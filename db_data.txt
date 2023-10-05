@@ -1,0 +1,24 @@
+insert into Student_Details values(
+1,'Murali',40),
+(2,'Sudhakar',39),
+(3,'Ramesh',38),
+(4,'Suresh',37),
+(5,'Naresh',36),
+(6,'Mahesh',35),
+(7,'Pawan',34),
+(8,'Kalyan',33),
+(9,'Ram',32),
+(10,'Charan',31),
+(11,'NTR',30),
+(12,'Nagarjuna',29),
+(13,'Venkatesh',28),
+(14,'Balakrishna',27),
+(15,'Chiranjeevi',26),
+(16,'Raviteja',25),
+(17,'Nani',24),
+(18,'Vijay',23),
+(19,'Surya',22),
+(20,'Rajeni',21);
+
+
+1,'Murali',40,
