@@ -1,0 +1,914 @@
+Python 3.9.13 (tags/v3.9.13:6de2ca5, May 17 2022, 16:36:42) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> name="helloworld"
+>>> name[0:8:2]
+'hloo'
+>>> a = [12,23,45]
+>>> x = bytes(a)
+>>> type(a)
+<class 'list'>
+>>> type(b)
+Traceback (most recent call last):
+  File "<pyshell#5>", line 1, in <module>
+    type(b)
+NameError: name 'b' is not defined
+>>> type(x)
+<class 'bytes'>
+>>> name
+'helloworld'
+>>> name[0]
+'h'
+>>> name[0]='K'
+Traceback (most recent call last):
+  File "<pyshell#9>", line 1, in <module>
+    name[0]='K'
+TypeError: 'str' object does not support item assignment
+>>> name="hello"
+>>> name
+'hello'
+>>> k=1221
+>>> type(k)
+<class 'int'>
+>>> k[0]
+Traceback (most recent call last):
+  File "<pyshell#14>", line 1, in <module>
+    k[0]
+TypeError: 'int' object is not subscriptable
+>>> print(x)
+b'\x0c\x17-'
+>>> x
+b'\x0c\x17-'
+>>> x[0]
+12
+>>> x[0]=100
+Traceback (most recent call last):
+  File "<pyshell#18>", line 1, in <module>
+    x[0]=100
+TypeError: 'bytes' object does not support item assignment
+>>> a=[-10,100,250]
+>>> x=byte(a)
+Traceback (most recent call last):
+  File "<pyshell#20>", line 1, in <module>
+    x=byte(a)
+NameError: name 'byte' is not defined
+>>> x=bytes(a)
+Traceback (most recent call last):
+  File "<pyshell#21>", line 1, in <module>
+    x=bytes(a)
+ValueError: bytes must be in range(0, 256)
+>>> a = [12,23,34,54]
+>>> for i in x:
+	print i
+	
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(i)?
+>>> for i in x:
+	print(i)
+
+	
+12
+23
+45
+>>> x
+b'\x0c\x17-'
+>>> a
+[12, 23, 34, 54]
+>>> help(bytes)
+Help on class bytes in module builtins:
+
+class bytes(object)
+ |  bytes(iterable_of_ints) -> bytes
+ |  bytes(string, encoding[, errors]) -> bytes
+ |  bytes(bytes_or_buffer) -> immutable copy of bytes_or_buffer
+ |  bytes(int) -> bytes object of size given by the parameter initialized with null bytes
+ |  bytes() -> empty bytes object
+ |  
+ |  Construct an immutable array of bytes from:
+ |    - an iterable yielding integers in range(256)
+ |    - a text string encoded using the specified encoding
+ |    - any object implementing the buffer API.
+ |    - an integer
+ |  
+ |  Methods defined here:
+ |  
+ |  __add__(self, value, /)
+ |      Return self+value.
+ |  
+ |  __contains__(self, key, /)
+ |      Return key in self.
+ |  
+ |  __eq__(self, value, /)
+ |      Return self==value.
+ |  
+ |  __ge__(self, value, /)
+ |      Return self>=value.
+ |  
+ |  __getattribute__(self, name, /)
+ |      Return getattr(self, name).
+ |  
+ |  __getitem__(self, key, /)
+ |      Return self[key].
+ |  
+ |  __getnewargs__(...)
+ |  
+ |  __gt__(self, value, /)
+ |      Return self>value.
+ |  
+ |  __hash__(self, /)
+ |      Return hash(self).
+ |  
+ |  __iter__(self, /)
+ |      Implement iter(self).
+ |  
+ |  __le__(self, value, /)
+ |      Return self<=value.
+ |  
+ |  __len__(self, /)
+ |      Return len(self).
+ |  
+ |  __lt__(self, value, /)
+ |      Return self<value.
+ |  
+ |  __mod__(self, value, /)
+ |      Return self%value.
+ |  
+ |  __mul__(self, value, /)
+ |      Return self*value.
+ |  
+ |  __ne__(self, value, /)
+ |      Return self!=value.
+ |  
+ |  __repr__(self, /)
+ |      Return repr(self).
+ |  
+ |  __rmod__(self, value, /)
+ |      Return value%self.
+ |  
+ |  __rmul__(self, value, /)
+ |      Return value*self.
+ |  
+ |  __str__(self, /)
+ |      Return str(self).
+ |  
+ |  capitalize(...)
+ |      B.capitalize() -> copy of B
+ |      
+ |      Return a copy of B with only its first character capitalized (ASCII)
+ |      and the rest lower-cased.
+ |  
+ |  center(self, width, fillchar=b' ', /)
+ |      Return a centered string of length width.
+ |      
+ |      Padding is done using the specified fill character.
+ |  
+ |  count(...)
+ |      B.count(sub[, start[, end]]) -> int
+ |      
+ |      Return the number of non-overlapping occurrences of subsection sub in
+ |      bytes B[start:end].  Optional arguments start and end are interpreted
+ |      as in slice notation.
+ |  
+ |  decode(self, /, encoding='utf-8', errors='strict')
+ |      Decode the bytes using the codec registered for encoding.
+ |      
+ |      encoding
+ |        The encoding with which to decode the bytes.
+ |      errors
+ |        The error handling scheme to use for the handling of decoding errors.
+ |        The default is 'strict' meaning that decoding errors raise a
+ |        UnicodeDecodeError. Other possible values are 'ignore' and 'replace'
+ |        as well as any other name registered with codecs.register_error that
+ |        can handle UnicodeDecodeErrors.
+ |  
+ |  endswith(...)
+ |      B.endswith(suffix[, start[, end]]) -> bool
+ |      
+ |      Return True if B ends with the specified suffix, False otherwise.
+ |      With optional start, test B beginning at that position.
+ |      With optional end, stop comparing B at that position.
+ |      suffix can also be a tuple of bytes to try.
+ |  
+ |  expandtabs(self, /, tabsize=8)
+ |      Return a copy where all tab characters are expanded using spaces.
+ |      
+ |      If tabsize is not given, a tab size of 8 characters is assumed.
+ |  
+ |  find(...)
+ |      B.find(sub[, start[, end]]) -> int
+ |      
+ |      Return the lowest index in B where subsection sub is found,
+ |      such that sub is contained within B[start,end].  Optional
+ |      arguments start and end are interpreted as in slice notation.
+ |      
+ |      Return -1 on failure.
+ |  
+ |  hex(...)
+ |      Create a str of hexadecimal numbers from a bytes object.
+ |      
+ |        sep
+ |          An optional single character or byte to separate hex bytes.
+ |        bytes_per_sep
+ |          How many bytes between separators.  Positive values count from the
+ |          right, negative values count from the left.
+ |      
+ |      Example:
+ |      >>> value = b'\xb9\x01\xef'
+ |      >>> value.hex()
+ |      'b901ef'
+ |      >>> value.hex(':')
+ |      'b9:01:ef'
+ |      >>> value.hex(':', 2)
+ |      'b9:01ef'
+ |      >>> value.hex(':', -2)
+ |      'b901:ef'
+ |  
+ |  index(...)
+ |      B.index(sub[, start[, end]]) -> int
+ |      
+ |      Return the lowest index in B where subsection sub is found,
+ |      such that sub is contained within B[start,end].  Optional
+ |      arguments start and end are interpreted as in slice notation.
+ |      
+ |      Raises ValueError when the subsection is not found.
+ |  
+ |  isalnum(...)
+ |      B.isalnum() -> bool
+ |      
+ |      Return True if all characters in B are alphanumeric
+ |      and there is at least one character in B, False otherwise.
+ |  
+ |  isalpha(...)
+ |      B.isalpha() -> bool
+ |      
+ |      Return True if all characters in B are alphabetic
+ |      and there is at least one character in B, False otherwise.
+ |  
+ |  isascii(...)
+ |      B.isascii() -> bool
+ |      
+ |      Return True if B is empty or all characters in B are ASCII,
+ |      False otherwise.
+ |  
+ |  isdigit(...)
+ |      B.isdigit() -> bool
+ |      
+ |      Return True if all characters in B are digits
+ |      and there is at least one character in B, False otherwise.
+ |  
+ |  islower(...)
+ |      B.islower() -> bool
+ |      
+ |      Return True if all cased characters in B are lowercase and there is
+ |      at least one cased character in B, False otherwise.
+ |  
+ |  isspace(...)
+ |      B.isspace() -> bool
+ |      
+ |      Return True if all characters in B are whitespace
+ |      and there is at least one character in B, False otherwise.
+ |  
+ |  istitle(...)
+ |      B.istitle() -> bool
+ |      
+ |      Return True if B is a titlecased string and there is at least one
+ |      character in B, i.e. uppercase characters may only follow uncased
+ |      characters and lowercase characters only cased ones. Return False
+ |      otherwise.
+ |  
+ |  isupper(...)
+ |      B.isupper() -> bool
+ |      
+ |      Return True if all cased characters in B are uppercase and there is
+ |      at least one cased character in B, False otherwise.
+ |  
+ |  join(self, iterable_of_bytes, /)
+ |      Concatenate any number of bytes objects.
+ |      
+ |      The bytes whose method is called is inserted in between each pair.
+ |      
+ |      The result is returned as a new bytes object.
+ |      
+ |      Example: b'.'.join([b'ab', b'pq', b'rs']) -> b'ab.pq.rs'.
+ |  
+ |  ljust(self, width, fillchar=b' ', /)
+ |      Return a left-justified string of length width.
+ |      
+ |      Padding is done using the specified fill character.
+ |  
+ |  lower(...)
+ |      B.lower() -> copy of B
+ |      
+ |      Return a copy of B with all ASCII characters converted to lowercase.
+ |  
+ |  lstrip(self, bytes=None, /)
+ |      Strip leading bytes contained in the argument.
+ |      
+ |      If the argument is omitted or None, strip leading  ASCII whitespace.
+ |  
+ |  partition(self, sep, /)
+ |      Partition the bytes into three parts using the given separator.
+ |      
+ |      This will search for the separator sep in the bytes. If the separator is found,
+ |      returns a 3-tuple containing the part before the separator, the separator
+ |      itself, and the part after it.
+ |      
+ |      If the separator is not found, returns a 3-tuple containing the original bytes
+ |      object and two empty bytes objects.
+ |  
+ |  removeprefix(self, prefix, /)
+ |      Return a bytes object with the given prefix string removed if present.
+ |      
+ |      If the bytes starts with the prefix string, return bytes[len(prefix):].
+ |      Otherwise, return a copy of the original bytes.
+ |  
+ |  removesuffix(self, suffix, /)
+ |      Return a bytes object with the given suffix string removed if present.
+ |      
+ |      If the bytes ends with the suffix string and that suffix is not empty,
+ |      return bytes[:-len(prefix)].  Otherwise, return a copy of the original
+ |      bytes.
+ |  
+ |  replace(self, old, new, count=-1, /)
+ |      Return a copy with all occurrences of substring old replaced by new.
+ |      
+ |        count
+ |          Maximum number of occurrences to replace.
+ |          -1 (the default value) means replace all occurrences.
+ |      
+ |      If the optional argument count is given, only the first count occurrences are
+ |      replaced.
+ |  
+ |  rfind(...)
+ |      B.rfind(sub[, start[, end]]) -> int
+ |      
+ |      Return the highest index in B where subsection sub is found,
+ |      such that sub is contained within B[start,end].  Optional
+ |      arguments start and end are interpreted as in slice notation.
+ |      
+ |      Return -1 on failure.
+ |  
+ |  rindex(...)
+ |      B.rindex(sub[, start[, end]]) -> int
+ |      
+ |      Return the highest index in B where subsection sub is found,
+ |      such that sub is contained within B[start,end].  Optional
+ |      arguments start and end are interpreted as in slice notation.
+ |      
+ |      Raise ValueError when the subsection is not found.
+ |  
+ |  rjust(self, width, fillchar=b' ', /)
+ |      Return a right-justified string of length width.
+ |      
+ |      Padding is done using the specified fill character.
+ |  
+ |  rpartition(self, sep, /)
+ |      Partition the bytes into three parts using the given separator.
+ |      
+ |      This will search for the separator sep in the bytes, starting at the end. If
+ |      the separator is found, returns a 3-tuple containing the part before the
+ |      separator, the separator itself, and the part after it.
+ |      
+ |      If the separator is not found, returns a 3-tuple containing two empty bytes
+ |      objects and the original bytes object.
+ |  
+ |  rsplit(self, /, sep=None, maxsplit=-1)
+ |      Return a list of the sections in the bytes, using sep as the delimiter.
+ |      
+ |        sep
+ |          The delimiter according which to split the bytes.
+ |          None (the default value) means split on ASCII whitespace characters
+ |          (space, tab, return, newline, formfeed, vertical tab).
+ |        maxsplit
+ |          Maximum number of splits to do.
+ |          -1 (the default value) means no limit.
+ |      
+ |      Splitting is done starting at the end of the bytes and working to the front.
+ |  
+ |  rstrip(self, bytes=None, /)
+ |      Strip trailing bytes contained in the argument.
+ |      
+ |      If the argument is omitted or None, strip trailing ASCII whitespace.
+ |  
+ |  split(self, /, sep=None, maxsplit=-1)
+ |      Return a list of the sections in the bytes, using sep as the delimiter.
+ |      
+ |      sep
+ |        The delimiter according which to split the bytes.
+ |        None (the default value) means split on ASCII whitespace characters
+ |        (space, tab, return, newline, formfeed, vertical tab).
+ |      maxsplit
+ |        Maximum number of splits to do.
+ |        -1 (the default value) means no limit.
+ |  
+ |  splitlines(self, /, keepends=False)
+ |      Return a list of the lines in the bytes, breaking at line boundaries.
+ |      
+ |      Line breaks are not included in the resulting list unless keepends is given and
+ |      true.
+ |  
+ |  startswith(...)
+ |      B.startswith(prefix[, start[, end]]) -> bool
+ |      
+ |      Return True if B starts with the specified prefix, False otherwise.
+ |      With optional start, test B beginning at that position.
+ |      With optional end, stop comparing B at that position.
+ |      prefix can also be a tuple of bytes to try.
+ |  
+ |  strip(self, bytes=None, /)
+ |      Strip leading and trailing bytes contained in the argument.
+ |      
+ |      If the argument is omitted or None, strip leading and trailing ASCII whitespace.
+ |  
+ |  swapcase(...)
+ |      B.swapcase() -> copy of B
+ |      
+ |      Return a copy of B with uppercase ASCII characters converted
+ |      to lowercase ASCII and vice versa.
+ |  
+ |  title(...)
+ |      B.title() -> copy of B
+ |      
+ |      Return a titlecased version of B, i.e. ASCII words start with uppercase
+ |      characters, all remaining cased characters have lowercase.
+ |  
+ |  translate(self, table, /, delete=b'')
+ |      Return a copy with each character mapped by the given translation table.
+ |      
+ |        table
+ |          Translation table, which must be a bytes object of length 256.
+ |      
+ |      All characters occurring in the optional argument delete are removed.
+ |      The remaining characters are mapped through the given translation table.
+ |  
+ |  upper(...)
+ |      B.upper() -> copy of B
+ |      
+ |      Return a copy of B with all ASCII characters converted to uppercase.
+ |  
+ |  zfill(self, width, /)
+ |      Pad a numeric string with zeros on the left, to fill a field of the given width.
+ |      
+ |      The original string is never truncated.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Class methods defined here:
+ |  
+ |  fromhex(string, /) from builtins.type
+ |      Create a bytes object from a string of hexadecimal numbers.
+ |      
+ |      Spaces between two numbers are accepted.
+ |      Example: bytes.fromhex('B9 01EF') -> b'\\xb9\\x01\\xef'.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Static methods defined here:
+ |  
+ |  __new__(*args, **kwargs) from builtins.type
+ |      Create and return a new object.  See help(type) for accurate signature.
+ |  
+ |  maketrans(frm, to, /)
+ |      Return a translation table useable for the bytes or bytearray translate method.
+ |      
+ |      The returned table will be one where each byte in frm is mapped to the byte at
+ |      the same position in to.
+ |      
+ |      The bytes objects frm and to must be of the same length.
+
+>>> for i in x:
+	print(i)
+
+	
+12
+23
+45
+>>> x[0]
+12
+>>> x[0:2]
+b'\x0c\x17'
+>>> a = [12,23,34,54]
+>>> x = bytearray(a)
+>>> x[0]
+12
+>>> x
+bytearray(b'\x0c\x17"6')
+>>> for i in x:
+	print(i)
+
+	
+12
+23
+34
+54
+>>> x[0]
+12
+>>> x[0]=100
+>>> x[0]
+100
+>>> for i in x:
+	print(i)
+
+	
+100
+23
+34
+54
+>>> x[3]=67
+>>> for i in x:
+	print(i)
+
+	
+100
+23
+34
+67
+>>> x[4]=1000
+Traceback (most recent call last):
+  File "<pyshell#49>", line 1, in <module>
+    x[4]=1000
+IndexError: bytearray index out of range
+>>> a= [101,"ravi",'NRT']
+>>> type(a)
+<class 'list'>
+>>> a[0]
+101
+>>> a[1]
+'ravi'
+>>> type(a[0])
+<class 'int'>
+>>> type(a[1])
+<class 'str'>
+>>> type(a)
+<class 'list'>
+>>> a
+[101, 'ravi', 'NRT']
+>>> a[0]=100
+>>> a
+[100, 'ravi', 'NRT']
+>>> tinylist = [123, 'john']
+>>> tinylist * 2
+[123, 'john', 123, 'john']
+>>> account_details = (101,"ravi","NRT")
+>>> type(account_details)
+<class 'tuple'>
+>>> account_details[0]
+101
+>>> account_details[0]=100
+Traceback (most recent call last):
+  File "<pyshell#65>", line 1, in <module>
+    account_details[0]=100
+TypeError: 'tuple' object does not support item assignment
+>>> account_details
+(101, 'ravi', 'NRT')
+>>> tuple = ( 'abcd', 786 , 2.23, 'john', 70.2  )
+>>> tuple[0:3:2]
+('abcd', 2.23)
+>>> tuple[0:3:-1]
+()
+>>> tuple[3:0:-1]
+('john', 2.23, 786)
+>>> tuple(0)
+Traceback (most recent call last):
+  File "<pyshell#71>", line 1, in <module>
+    tuple(0)
+TypeError: 'tuple' object is not callable
+>>> tuple[3:0:-2]
+('john', 786)
+>>> tuple[0:3:-1]
+()
+>>> a = range(10)
+>>> a
+range(0, 10)
+>>> for i in a:
+	print(i)
+
+	
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+>>> r = range(10,30,3)
+>>> for i in r:
+	print(i)
+
+	
+10
+13
+16
+19
+22
+25
+28
+>>> r[0]
+10
+>>> r[1]
+13
+>>> r[0:4]
+range(10, 22, 3)
+>>> x=r[0:4]
+>>> x
+range(10, 22, 3)
+>>> for i in x:
+	print(i)
+
+	
+10
+13
+16
+19
+>>> r[0:7]
+range(10, 31, 3)
+>>> r[8]
+Traceback (most recent call last):
+  File "<pyshell#92>", line 1, in <module>
+    r[8]
+IndexError: range object index out of range
+>>> r[7]
+Traceback (most recent call last):
+  File "<pyshell#93>", line 1, in <module>
+    r[7]
+IndexError: range object index out of range
+>>> r[6]
+28
+>>> r
+range(10, 30, 3)
+>>> for i in r:
+	print(i)
+
+	
+10
+13
+16
+19
+22
+25
+28
+>>> r[0:7]
+range(10, 31, 3)
+>>> for i in r:
+	print(i)
+
+	
+10
+13
+16
+19
+22
+25
+28
+>>> r[0:8]
+range(10, 31, 3)
+>>> r[0:9]
+range(10, 31, 3)
+>>> r[9]
+Traceback (most recent call last):
+  File "<pyshell#105>", line 1, in <module>
+    r[9]
+IndexError: range object index out of range
+>>> a=[1,2,3,4,5,6,7]
+>>> a[0]
+1
+>>> a[0:10]
+[1, 2, 3, 4, 5, 6, 7]
+>>> a[10]
+Traceback (most recent call last):
+  File "<pyshell#109>", line 1, in <module>
+    a[10]
+IndexError: list index out of range
+>>> r[0]
+10
+>>> r[0]=100
+Traceback (most recent call last):
+  File "<pyshell#111>", line 1, in <module>
+    r[0]=100
+TypeError: 'range' object does not support item assignment
+>>> s={1,2,3,100,1,1,3,4}
+>>> s
+{1, 2, 3, 100, 4}
+>>> s
+{1, 2, 3, 100, 4}
+>>> s={a,b,aa,bb,zz,z}
+Traceback (most recent call last):
+  File "<pyshell#115>", line 1, in <module>
+    s={a,b,aa,bb,zz,z}
+NameError: name 'b' is not defined
+>>> a=1
+>>> b=23
+>>> s={a,b}
+>>> s
+{1, 23}
+>>> s={'a','b','aa','bb','zz','z',a,b}
+>>> s
+{'a', 1, 'z', 'b', 'bb', 'zz', 23, 'aa'}
+>>> s[0]
+Traceback (most recent call last):
+  File "<pyshell#122>", line 1, in <module>
+    s[0]
+TypeError: 'set' object is not subscriptable
+>>> k={}
+>>> type(k)
+<class 'dict'>
+>>> k={1}
+>>> type(k)
+<class 'set'>
+>>> a=[]
+>>> type(a)
+<class 'list'>
+>>> a=()
+>>> type(a)
+<class 'tuple'>
+>>> a=(1)
+>>> type(a)
+<class 'int'>
+>>> a=(1,)
+>>> type(a)
+<class 'tuple'>
+>>> a
+(1,)
+>>> a=("hello")
+>>> a
+'hello'
+>>> a=[1]
+>>> type(a)
+<class 'list'>
+>>> s = {10,20,30,40}
+>>> s.update([50])
+>>> s
+{40, 10, 50, 20, 30}
+>>> s.remove(50)
+>>> s
+{40, 10, 20, 30}
+>>> dir(s)
+['__and__', '__class__', '__class_getitem__', '__contains__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__iand__', '__init__', '__init_subclass__', '__ior__', '__isub__', '__iter__', '__ixor__', '__le__', '__len__', '__lt__', '__ne__', '__new__', '__or__', '__rand__', '__reduce__', '__reduce_ex__', '__repr__', '__ror__', '__rsub__', '__rxor__', '__setattr__', '__sizeof__', '__str__', '__sub__', '__subclasshook__', '__xor__', 'add', 'clear', 'copy', 'difference', 'difference_update', 'discard', 'intersection', 'intersection_update', 'isdisjoint', 'issubset', 'issuperset', 'pop', 'remove', 'symmetric_difference', 'symmetric_difference_update', 'union', 'update']
+>>> s.pop()
+40
+>>> s
+{10, 20, 30}
+>>> s.remove(100)
+Traceback (most recent call last):
+  File "<pyshell#148>", line 1, in <module>
+    s.remove(100)
+KeyError: 100
+>>> s.pop()
+10
+>>> s
+{20, 30}
+>>> s = {50,60,70,80,90}
+>>> fs = frozenset(s)
+>>> fs
+frozenset({80, 50, 70, 90, 60})
+>>> dir(fs)
+['__and__', '__class__', '__class_getitem__', '__contains__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__ne__', '__new__', '__or__', '__rand__', '__reduce__', '__reduce_ex__', '__repr__', '__ror__', '__rsub__', '__rxor__', '__setattr__', '__sizeof__', '__str__', '__sub__', '__subclasshook__', '__xor__', 'copy', 'difference', 'intersection', 'isdisjoint', 'issubset', 'issuperset', 'symmetric_difference', 'union']
+>>> help(fs)
+Help on frozenset object:
+
+class frozenset(object)
+ |  frozenset() -> empty frozenset object
+ |  frozenset(iterable) -> frozenset object
+ |  
+ |  Build an immutable unordered collection of unique elements.
+ |  
+ |  Methods defined here:
+ |  
+ |  __and__(self, value, /)
+ |      Return self&value.
+ |  
+ |  __contains__(...)
+ |      x.__contains__(y) <==> y in x.
+ |  
+ |  __eq__(self, value, /)
+ |      Return self==value.
+ |  
+ |  __ge__(self, value, /)
+ |      Return self>=value.
+ |  
+ |  __getattribute__(self, name, /)
+ |      Return getattr(self, name).
+ |  
+ |  __gt__(self, value, /)
+ |      Return self>value.
+ |  
+ |  __hash__(self, /)
+ |      Return hash(self).
+ |  
+ |  __iter__(self, /)
+ |      Implement iter(self).
+ |  
+ |  __le__(self, value, /)
+ |      Return self<=value.
+ |  
+ |  __len__(self, /)
+ |      Return len(self).
+ |  
+ |  __lt__(self, value, /)
+ |      Return self<value.
+ |  
+ |  __ne__(self, value, /)
+ |      Return self!=value.
+ |  
+ |  __or__(self, value, /)
+ |      Return self|value.
+ |  
+ |  __rand__(self, value, /)
+ |      Return value&self.
+ |  
+ |  __reduce__(...)
+ |      Return state information for pickling.
+ |  
+ |  __repr__(self, /)
+ |      Return repr(self).
+ |  
+ |  __ror__(self, value, /)
+ |      Return value|self.
+ |  
+ |  __rsub__(self, value, /)
+ |      Return value-self.
+ |  
+ |  __rxor__(self, value, /)
+ |      Return value^self.
+ |  
+ |  __sizeof__(...)
+ |      S.__sizeof__() -> size of S in memory, in bytes
+ |  
+ |  __sub__(self, value, /)
+ |      Return self-value.
+ |  
+ |  __xor__(self, value, /)
+ |      Return self^value.
+ |  
+ |  copy(...)
+ |      Return a shallow copy of a set.
+ |  
+ |  difference(...)
+ |      Return the difference of two or more sets as a new set.
+ |      
+ |      (i.e. all elements that are in this set but not the others.)
+ |  
+ |  intersection(...)
+ |      Return the intersection of two sets as a new set.
+ |      
+ |      (i.e. all elements that are in both sets.)
+ |  
+ |  isdisjoint(...)
+ |      Return True if two sets have a null intersection.
+ |  
+ |  issubset(...)
+ |      Report whether another set contains this set.
+ |  
+ |  issuperset(...)
+ |      Report whether this set contains another set.
+ |  
+ |  symmetric_difference(...)
+ |      Return the symmetric difference of two sets as a new set.
+ |      
+ |      (i.e. all elements that are in exactly one of the sets.)
+ |  
+ |  union(...)
+ |      Return the union of sets as a new set.
+ |      
+ |      (i.e. all elements that are in either set.)
+ |  
+ |  ----------------------------------------------------------------------
+ |  Class methods defined here:
+ |  
+ |  __class_getitem__(...) from builtins.type
+ |      See PEP 585
+ |  
+ |  ----------------------------------------------------------------------
+ |  Static methods defined here:
+ |  
+ |  __new__(*args, **kwargs) from builtins.type
+ |      Create and return a new object.  See help(type) for accurate signature.
+
+>>> d = {101:"Ram",102:"Ravi",103:"Rani"}
+>>> type(d)
+<class 'dict'>
+>>> print(d)
+{101: 'Ram', 102: 'Ravi', 103: 'Rani'}
+>>> d[101]
+'Ram'
+>>> d[102]
+'Ravi'
+>>> dict = {}
+>>> type(dict)
+<class 'dict'>
+>>> dict['one'] = "This is one"
+>>> dict[2]     = "This is two"
+>>> dict
+{'one': 'This is one', 2: 'This is two'}
+>>> print(dict['one'])
+This is one
+>>> print(dict['This is one'])
+Traceback (most recent call last):
+  File "<pyshell#167>", line 1, in <module>
+    print(dict['This is one'])
+KeyError: 'This is one'
+>>> tinydict = {'name': 'john','code':6734, 'dept': 'sales'}
+>>> print(tinydict.keys())
+dict_keys(['name', 'code', 'dept'])
+>>> print(tinydict.values())
+dict_values(['john', 6734, 'sales'])
+>>> 

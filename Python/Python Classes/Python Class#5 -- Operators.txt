@@ -1,0 +1,414 @@
+Python 3.11.4 (tags/v3.11.4:d2340ef, Jun  7 2023, 05:45:37) [MSC v.1934 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+tinydict = {'name': 'john','code':6734, 'dept': 'sales'}
+tinydict['sal']
+Traceback (most recent call last):
+  File "<pyshell#1>", line 1, in <module>
+    tinydict['sal']
+KeyError: 'sal'
+tinydict['john']
+Traceback (most recent call last):
+  File "<pyshell#2>", line 1, in <module>
+    tinydict['john']
+KeyError: 'john'
+tinydict['name']
+'john'
+tinydict.keys()
+dict_keys(['name', 'code', 'dept'])
+tinydict.values()
+dict_values(['john', 6734, 'sales'])
+dir(tinydict)
+['__class__', '__class_getitem__', '__contains__', '__delattr__', '__delitem__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__getstate__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__ior__', '__iter__', '__le__', '__len__', '__lt__', '__ne__', '__new__', '__or__', '__reduce__', '__reduce_ex__', '__repr__', '__reversed__', '__ror__', '__setattr__', '__setitem__', '__sizeof__', '__str__', '__subclasshook__', 'clear', 'copy', 'fromkeys', 'get', 'items', 'keys', 'pop', 'popitem', 'setdefault', 'update', 'values']
+help('tinydict')
+No Python documentation found for 'tinydict'.
+Use help() to get the interactive help utility.
+Use help(str) for help on the str class.
+help(tinydict)
+
+print(hello)
+Traceback (most recent call last):
+  File "<pyshell#9>", line 1, in <module>
+    print(hello)
+NameError: name 'hello' is not defined. Did you mean: 'help'?
+
+
+someTuple = (1,2)
+someList  = [1,2]
+a = [1,2,3,4,5]
+b=(1,2,3,4,5)
+dir(a)
+['__add__', '__class__', '__class_getitem__', '__contains__', '__delattr__', '__delitem__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__getstate__', '__gt__', '__hash__', '__iadd__', '__imul__', '__init__', '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__reversed__', '__rmul__', '__setattr__', '__setitem__', '__sizeof__', '__str__', '__subclasshook__', 'append', 'clear', 'copy', 'count', 'extend', 'index', 'insert', 'pop', 'remove', 'reverse', 'sort']
+a.__size__()
+Traceback (most recent call last):
+  File "<pyshell#17>", line 1, in <module>
+    a.__size__()
+AttributeError: 'list' object has no attribute '__size__'. Did you mean: '__sizeof__'?
+a.__sizeof__()
+88
+b.__sizeof__()
+64
+c={1,2,3,4,5}
+c.__sizeof__()
+456
+d=forzenset(c)
+Traceback (most recent call last):
+  File "<pyshell#22>", line 1, in <module>
+    d=forzenset(c)
+NameError: name 'forzenset' is not defined. Did you mean: 'frozenset'?
+d=frozenset(c)
+d.__sizeof__()
+456
+k=range(1,6)
+dir(k)
+['__bool__', '__class__', '__contains__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__getstate__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__reversed__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'count', 'index', 'start', 'step', 'stop']
+k.__sizeof__()
+48
+b    = [1,2]
+b[0] = 3 ['__bool__', '__class__', '__contains__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__getstate__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__reversed__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'count', 'index', 'start', 'step', 'stop']
+KeyboardInterrupt
+b[0]=3
+
+b
+[3, 2]
+a    = (1,2)
+a[0] = 3
+Traceback (most recent call last):
+  File "<pyshell#33>", line 1, in <module>
+    a[0] = 3
+TypeError: 'tuple' object does not support item assignment
+a = (1,2)
+a = a + (3)
+Traceback (most recent call last):
+  File "<pyshell#35>", line 1, in <module>
+    a = a + (3)
+TypeError: can only concatenate tuple (not "int") to tuple
+a = a + (3,)
+a
+(1, 2, 3)
+a     = (1,2)
+b     = [1,2]
+id(a)
+1702991525248
+id(b)
+1702991548736
+a   += (3,)
+a
+(1, 2, 3)
+b   += [3]
+b
+[1, 2, 3]
+id(a)
+1702985774016
+id(b)
+1702991548736
+a={1,2,3}
+id(a)
+1702991111424
+a.update(5)
+Traceback (most recent call last):
+  File "<pyshell#50>", line 1, in <module>
+    a.update(5)
+TypeError: 'int' object is not iterable
+a.update({5})
+a
+{1, 2, 3, 5}
+id(a)
+1702991111424
+a.remove(1)
+a
+{2, 3, 5}
+id(a)
+1702991111424
+a.pop()
+2
+a    = (1,2)
+b    = [1,2]
+c = {a: 1}
+c
+{(1, 2): 1}
+k={1,2}
+d={k:1}
+Traceback (most recent call last):
+  File "<pyshell#63>", line 1, in <module>
+    d={k:1}
+TypeError: unhashable type: 'set'
+
+
+a=[1,2,3]
+a[1]
+2
+a[1]=0
+a
+[1, 0, 3]
+a=[4,5,6]
+s="hari"
+s[0]
+'h'
+s[0]='k'
+Traceback (most recent call last):
+  File "<pyshell#73>", line 1, in <module>
+    s[0]='k'
+TypeError: 'str' object does not support item assignment
+
+
+
+
+
+x = 15
+y=4
+x / y
+3.75
+x%y
+3
+x//y
+3
+x=10
+y=5
+x/y
+2.0
+x%y
+0
+x//y
+2
+x ** y
+100000
+
+
+
+x = 5
+x *= 5
+x
+25
+x = 5
+x = x * 5
+x
+25
+n = 10
+-n
+-10
+n=-5
+n
+-5
+-n
+5
+
+
+x = 10
+y = 12
+x > y
+False
+
+
+n = 10
+-n
+-10
+n=-5
+-n
+5
+
+x='False'
+x=FALSE
+Traceback (most recent call last):
+  File "<pyshell#115>", line 1, in <module>
+    x=FALSE
+NameError: name 'FALSE' is not defined. Did you mean: 'False'?
+x=False
+x
+False
+type(x)
+<class 'bool'>
+x=FaLse
+Traceback (most recent call last):
+  File "<pyshell#119>", line 1, in <module>
+    x=FaLse
+NameError: name 'FaLse' is not defined. Did you mean: 'False'?
+True
+True
+True + True
+2
+int(True)
+1
+int(False)
+0
+str(True)
+'True'
+
+
+x = 10
+y = 12
+x > y
+False
+a = 10
+b = 20
+c = a > b
+type(c)
+<class 'bool'>
+c
+False
+int(c)
+0
+str(c)
+'False'
+d = a < b
+d
+True
+c
+False
+d
+True
+c and d
+False
+c or d
+True
+c ^ d
+True
+x = 'Hello world'
+'H' in x
+True
+'h' in x
+False
+a={1:2,'A': 'HARI'}
+'ravi' in a
+False
+2 in a
+False
+2 in a.values()
+True
+2 not i a
+SyntaxError: invalid syntax
+2 not in a
+True
+a =25
+b = 25
+id(a)
+140711172302376
+id(b)
+140711172302376
+a is b
+True
+a is not b
+False
+a=[1,2,3,4,5]
+b=[1,2,3,4,5]
+id(a)
+1702991185344
+id(b)
+1705093516672
+a=(1,2,3)
+b=(1,2,3)
+id(a)
+1702991467328
+id(b)
+1702991464576
+a={1,2,3}
+b={1,2,3}
+id(a)
+1702991113216
+id(b)
+1702991112768
+a={1,2,3,4}
+id(a)
+1702991112096
+b={1,2,3,4}
+id(b)
+1702991112992
+a.update({5})
+a
+{1, 2, 3, 4, 5}
+id(a)
+1702991112096
+
+s="Krishna"
+id(s)
+1702991589936
+k="Krishna"
+id(k)
+1702991589936
+a = 10
+b = 20
+a is b
+False
+a is not b
+True
+type(a) is int
+True
+type(a) is type(1)
+True
+id(type(a)) is id(int)
+False
+id(type(a))
+140711170825776
+id(int)
+140711170825776
+id(a)
+140711172301896
+id(type(a)) is id(int)
+False
+id(type(a)) is not id(int)
+True
+type(a)
+<class 'int'>
+type(int)
+<class 'type'>
+id(type(a)) is not id(type(int))
+True
+id(type(a) is id(int))
+140711170775944
+type(a) is id(int)
+False
+id(False)
+140711170775944
+bin(72)
+'0b1001000'
+hex(72)
+'0x48'
+a = 4
+bin(a)
+'0b100'
+~a
+-5
+a=100
+bin(a)
+'0b1100100'
+~a
+-101
+a=32
+~a
+-33
+a = 4
+b = 5
+bin(a)
+'0b100'
+bin(b)
+'0b101'
+a & b
+4
+a | b
+5
+a ^ b
+1
+a = 4
+bin(a)
+'0b100'
+a << 1
+8
+a
+4
+a << 2
+16
+a >> 1
+2
+a >> 2
+1
+a >> 3
+0
+a >> 4
+0
+
+
+
+a=11
+bin(a)
+'0b1011'
+a << 1
+22

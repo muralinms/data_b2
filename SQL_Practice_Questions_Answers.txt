@@ -1,0 +1,837 @@
+CREATE TABLE Orders
+(
+	order_id INT,
+	order_date DATE,
+	customer_name VARCHAR(250),
+	city VARCHAR(100),	
+	order_amount decimal
+);
+
+
+INSERT INTO Orders
+SELECT '1001','2017/04/04','David Smith','GuildFord',10000
+UNION ALL	  
+SELECT '1002','2017/04/02','David Jones','Arlington',20000
+UNION ALL	  
+SELECT '1003','2017/04/03','John Smith','Shalford',5000
+UNION ALL	  
+SELECT '1004','2017/04/04','Michael Smith','GuildFord',15000
+UNION ALL	  
+SELECT '1005','2017/04/05','David Williams','Shalford',7000
+UNION ALL	  
+SELECT '1006','2017/04/06','Paum Smith','GuildFord',25000
+UNION ALL	 
+SELECT '1007','2017/04/10','Andrew Smith','Arlington',15000
+UNION ALL	  
+SELECT '1008','2017/04/11','David Brown','Arlington',2000
+UNION ALL	  
+SELECT '1009','2017/04/20','Robert Smith','Shalford',1000
+UNION ALL	  
+SELECT '1010','2017/04/25','Peter Smith','GuildFord',500;
+
+
+1. select * from empy;
++-------+--------+-----------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+--------+-----------+------+------------+------+------+--------+-------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800 | NULL |     20 |     5 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600 |  300 |     30 |     3 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250 |  500 |     30 |     4 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975 | NULL |     20 |     2 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250 | 1400 |     30 |     4 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850 | NULL |     30 |     2 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450 | NULL |     10 |     2 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000 | NULL |     20 |     1 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000 | NULL |     10 |     1 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500 | NULL |     30 |     3 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100 | NULL |     20 |     4 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950 | NULL |     30 |     5 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000 | NULL |     20 |     1 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300 | NULL |     10 |     3 |
++-------+--------+-----------+------+------------+------+------+--------+-------+
+14 rows in set
+
+2. SELECT distinct job from empy;
++-----------+
+| job       |
++-----------+
+| CLERK     |
+| SALESMAN  |
+| MANAGER   |
+| ANALYST   |
+| PRESIDENT |
++-----------+
+5 rows in set
+
+3. select ename, sal from empy order by sal;
++--------+------+
+| ename  | sal  |
++--------+------+
+| SMITH  |  800 |
+| JAMES  |  950 |
+| ADAMS  | 1100 |
+| WARD   | 1250 |
+| MARTIN | 1250 |
+| MILLER | 1300 |
+| TURNER | 1500 |
+| ALLEN  | 1600 |
+| CLARK  | 2450 |
+| BLAKE  | 2850 |
+| JONES  | 2975 |
+| SCOTT  | 3000 |
+| FORD   | 3000 |
+| KING   | 5000 |
++--------+------+
+14 rows in set
+
+4. select deptno,job from empy order by deptno,job desc;
++--------+-----------+
+| deptno | job       |
++--------+-----------+
+|     10 | PRESIDENT |
+|     10 | MANAGER   |
+|     10 | CLERK     |
+|     20 | MANAGER   |
+|     20 | CLERK     |
+|     20 | CLERK     |
+|     20 | ANALYST   |
+|     20 | ANALYST   |
+|     30 | SALESMAN  |
+|     30 | SALESMAN  |
+|     30 | SALESMAN  |
+|     30 | SALESMAN  |
+|     30 | MANAGER   |
+|     30 | CLERK     |
++--------+-----------+
+14 rows in set
+
+5. select distinct job from empy order by job desc;
++-----------+
+| job       |
++-----------+
+| SALESMAN  |
+| PRESIDENT |
+| MANAGER   |
+| CLERK     |
+| ANALYST   |
++-----------+
+5 rows in set
+
+6. select * from empy where empno IN(select Mgr from empy);
++-------+-------+-----------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+-------+-----------+------+------------+------+------+--------+-------+
+|  7566 | JONES | MANAGER   | 7839 | 1981-04-02 | 2975 | NULL |     20 |     2 |
+|  7698 | BLAKE | MANAGER   | 7839 | 1981-05-01 | 2850 | NULL |     30 |     2 |
+|  7782 | CLARK | MANAGER   | 7839 | 1981-06-09 | 2450 | NULL |     10 |     2 |
+|  7788 | SCOTT | ANALYST   | 7566 | 1982-12-09 | 3000 | NULL |     20 |     1 |
+|  7839 | KING  | PRESIDENT | NULL | 1981-11-17 | 5000 | NULL |     10 |     1 |
+|  7902 | FORD  | ANALYST   | 7566 | 1981-12-03 | 3000 | NULL |     20 |     1 |
++-------+-------+-----------+------+------------+------+------+--------+-------+
+6 rows in set
+
+7. select *  from empy where hiredate<('1981-01-01');
++-------+-------+-------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME | JOB   | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+-------+-------+------+------------+------+------+--------+-------+
+|  7369 | SMITH | CLERK | 7902 | 1980-12-17 |  800 | NULL |     20 |     5 |
++-------+-------+-------+------+------------+------+------+--------+-------+
+1 row in set
+
+8. select Empno, Ename, sal, (Sal/30) as Daily_sal, sal*12 as Anual_Sal from empy order by sal asc;
++-------+--------+------+-----------+-----------+
+| Empno | Ename  | sal  | Daily_sal | Anual_Sal |
++-------+--------+------+-----------+-----------+
+|  7369 | SMITH  |  800 |   26.6667 |      9600 |
+|  7900 | JAMES  |  950 |   31.6667 |     11400 |
+|  7876 | ADAMS  | 1100 |   36.6667 |     13200 |
+|  7521 | WARD   | 1250 |   41.6667 |     15000 |
+|  7654 | MARTIN | 1250 |   41.6667 |     15000 |
+|  7934 | MILLER | 1300 |   43.3333 |     15600 |
+|  7844 | TURNER | 1500 |   50.0000 |     18000 |
+|  7499 | ALLEN  | 1600 |   53.3333 |     19200 |
+|  7782 | CLARK  | 2450 |   81.6667 |     29400 |
+|  7698 | BLAKE  | 2850 |   95.0000 |     34200 |
+|  7566 | JONES  | 2975 |   99.1667 |     35700 |
+|  7788 | SCOTT  | 3000 |  100.0000 |     36000 |
+|  7902 | FORD   | 3000 |  100.0000 |     36000 |
+|  7839 | KING   | 5000 |  166.6667 |     60000 |
++-------+--------+------+-----------+-----------+
+14 rows in set
+
+9. Select Empno, Ename, job, Hiredate, datediff(Now(),hiredate)/365 as Experience from empy where empno in(select Mgr from empy);
++-------+-------+-----------+------------+------------+
+| Empno | Ename | job       | Hiredate   | Experience |
++-------+-------+-----------+------------+------------+
+|  7566 | JONES | MANAGER   | 1981-04-02 |    42.4932 |
+|  7698 | BLAKE | MANAGER   | 1981-05-01 |    42.4137 |
+|  7782 | CLARK | MANAGER   | 1981-06-09 |    42.3068 |
+|  7788 | SCOTT | ANALYST   | 1982-12-09 |    40.8055 |
+|  7839 | KING  | PRESIDENT | 1981-11-17 |    41.8658 |
+|  7902 | FORD  | ANALYST   | 1981-12-03 |    41.8219 |
++-------+-------+-----------+------------+------------+
+6 rows in set
+
+10. Select Empno, Ename, job, Hiredate, datediff(Now(),hiredate)/365 as Experience from empy where empno in(select Mgr from empy where mgr=7369);
+Empty set
+
+11. select * from empy where comm > Sal;
++-------+--------+----------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME  | JOB      | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+--------+----------+------+------------+------+------+--------+-------+
+|  7654 | MARTIN | SALESMAN | 7698 | 1981-09-28 | 1250 | 1400 |     30 |     4 |
++-------+--------+----------+------+------------+------+------+--------+-------+
+1 row in set
+
+12. select * from empy where hiredate > '1981-12-31' order by job;
++-------+--------+---------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME  | JOB     | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+--------+---------+------+------------+------+------+--------+-------+
+|  7788 | SCOTT  | ANALYST | 7566 | 1982-12-09 | 3000 | NULL |     20 |     1 |
+|  7876 | ADAMS  | CLERK   | 7788 | 1983-01-12 | 1100 | NULL |     20 |     4 |
+|  7934 | MILLER | CLERK   | 7782 | 1982-01-23 | 1300 | NULL |     10 |     3 |
++-------+--------+---------+------+------------+------+------+--------+-------+
+3 rows in set
+
+13. Select Empno, Ename, Sal, (sal/30)as Daily_Sal, datediff(Now(),hiredate)/365 as Experience from empy where (Sal/30)>100;
++-------+-------+------+-----------+------------+
+| Empno | Ename | Sal  | Daily_Sal | Experience |
++-------+-------+------+-----------+------------+
+|  7839 | KING  | 5000 |  166.6667 |    41.8658 |
++-------+-------+------+-----------+------------+
+1 row in set
+
+14. select * from empy where Job = 'Clerk' or Job = 'Analyst' order by job desc;
+15. select * from  empy where hiredate in('1981-05-01','1981-12-03','1981-12-17' '1980-01-08')order by hiredate;
+16. select * from empy where deptno=10 or deptno=20;
+17. select * from empy where Hiredate between '1981-01-01' and '1981-12-31';
+18. select * from empy where Hiredate between '1980-08-01' and '1980-08-31';
+19. select Empno, Ename, Job, Sal, (Sal/30*365) as Anual_Salary from empy where (Sal/30*365) between 22000 and 45000;
++-------+-------+---------+------+--------------+
+| Empno | Ename | Job     | Sal  | Anual_Salary |
++-------+-------+---------+------+--------------+
+|  7566 | JONES | MANAGER | 2975 |   36195.8333 |
+|  7698 | BLAKE | MANAGER | 2850 |   34675.0000 |
+|  7782 | CLARK | MANAGER | 2450 |   29808.3333 |
+|  7788 | SCOTT | ANALYST | 3000 |   36500.0000 |
+|  7902 | FORD  | ANALYST | 3000 |   36500.0000 |
++-------+-------+---------+------+--------------+
+5 rows in set
+
+20. select * from empy where length(Ename)=5;
+21. select * from empy where ename like 's%' and  length(Ename)=5;
+22. select * from empy where length(Ename)=4 and Ename like '__R%';
+23. select * from empy where Ename like 'S%H' and length(Ename)=5;
+24. select * from empy where Hiredate like '____-01-__';
+25. 
+26. select sal  from empy where sal like '%0' and length (sal)=4;
+27. select * from empy where Ename like '%ll%';
+28. select * from empy where hiredate between '1980-01-01' and '1989-12-31';
+29. select * from empy where deptno !=20;
+30. 
+31. select * from empy where year(hiredate) !=1981;
+32. select * from empy where empno not like '78%';
+33. select * from empy where empno IN(select Mgr from empy);
+34. select * from empy where month(hiredate) !=03;
+35. select * from empy where job ='Clerk' and deptno=20;
+36. select * from  empy where (deptno='10' or deptno='30') and year(hiredate) =1981 order by deptno;
+37. select Ename,empy.deptno, dept.loc from empy inner join dept on empy.deptno=dept.deptno where ename='Smith' order by loc;
+38. select Ename,empy.deptno, dept.loc from empy inner join dept on empy.deptno=dept.deptno where ename='Smith' order by loc;
+39. 
+
+56. select * from empy
+    -> right join dept
+    -> on
+    -> empy.deptno = dept.deptno
+    -> where loc in ('Chicago', 'Boston') and Hiredate <(Select Hiredate from empy where ename = 'Blake');
++-------+-------+----------+------+------------+------+------+--------+-------+--------+-------+---------+
+| EMPNO | ENAME | JOB      | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE | DEPTNO | DNAME | LOC     |
++-------+-------+----------+------+------------+------+------+--------+-------+--------+-------+---------+
+|  7499 | ALLEN | SALESMAN | 7698 | 1981-02-20 | 1600 |  300 |     30 |     3 |     30 | SALES | CHICAGO |
+|  7521 | WARD  | SALESMAN | 7698 | 1981-02-22 | 1250 |  500 |     30 |     4 |     30 | SALES | CHICAGO |
++-------+-------+----------+------+------------+------+------+--------+-------+--------+-------+---------+
+2 rows in set
+
+57. 
+58. select * from empy where Job in (select job from empy where Ename = 'Allen' or Ename = 'Smith') order by job;
++-------+--------+----------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME  | JOB      | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+--------+----------+------+------------+------+------+--------+-------+
+|  7369 | SMITH  | CLERK    | 7902 | 1980-12-17 |  800 | NULL |     20 |     5 |
+|  7876 | ADAMS  | CLERK    | 7788 | 1983-01-12 | 1100 | NULL |     20 |     4 |
+|  7900 | JAMES  | CLERK    | 7698 | 1981-12-03 |  950 | NULL |     30 |     5 |
+|  7934 | MILLER | CLERK    | 7782 | 1982-01-23 | 1300 | NULL |     10 |     3 |
+|  7499 | ALLEN  | SALESMAN | 7698 | 1981-02-20 | 1600 |  300 |     30 |     3 |
+|  7521 | WARD   | SALESMAN | 7698 | 1981-02-22 | 1250 |  500 |     30 |     4 |
+|  7654 | MARTIN | SALESMAN | 7698 | 1981-09-28 | 1250 | 1400 |     30 |     4 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 1500 | NULL |     30 |     3 |
++-------+--------+----------+------+------------+------+------+--------+-------+
+8 rows in set
+
+59. select * from empy where deptno =10 in (Select deptno from empy where deptno !=20);
+60. 
+61. select max(sal) from empy;
++----------+
+| max(sal) |
++----------+
+|     5000 |
++----------+
+1 row in set
+
+62.select * from empy where sal in (select Max(sal) from empy);
++-------+-------+-----------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+-------+-----------+------+------------+------+------+--------+-------+
+|  7839 | KING  | PRESIDENT | NULL | 1981-11-17 | 5000 | NULL |     10 |     1 |
++-------+-------+-----------+------+------------+------+------+--------+-------+
+1 row in set
+
+63.select * from empy where sal in (select Max(sal) from empy where deptno in (select d.deptno from dept d where d.dname = 'Sales'));
++-------+-------+---------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME | JOB     | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+-------+---------+------+------------+------+------+--------+-------+
+|  7698 | BLAKE | MANAGER | 7839 | 1981-05-01 | 2850 | NULL |     30 |     2 |
++-------+-------+---------+------+------------+------+------+--------+-------+
+1 row in set
+
+64.select * from empy where hiredate = (select Max(Hiredate) from empy where grade =3 and deptno = (select d.deptno from dept d where d.loc = 'Chicago'));
++-------+--------+----------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME  | JOB      | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+--------+----------+------+------------+------+------+--------+-------+
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 1500 | NULL |     30 |     3 |
++-------+--------+----------+------+------------+------+------+--------+-------+
+1 row in set
+
+65. select * from empy where hiredate < (select Max(hiredate) from empy where MGR in (Select empno from empy where ename = 'King'));
++-------+-------+----------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME | JOB      | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+-------+----------+------+------------+------+------+--------+-------+
+|  7369 | SMITH | CLERK    | 7902 | 1980-12-17 |  800 | NULL |     20 |     5 |
+|  7499 | ALLEN | SALESMAN | 7698 | 1981-02-20 | 1600 |  300 |     30 |     3 |
+|  7521 | WARD  | SALESMAN | 7698 | 1981-02-22 | 1250 |  500 |     30 |     4 |
+|  7566 | JONES | MANAGER  | 7839 | 1981-04-02 | 2975 | NULL |     20 |     2 |
+|  7698 | BLAKE | MANAGER  | 7839 | 1981-05-01 | 2850 | NULL |     30 |     2 |
++-------+-------+----------+------+------------+------+------+--------+-------+
+5 rows in set
+
+66. 
+
+67. i) select * from empy where hiredate like '1981-__-__' limit 1;
++-------+-------+----------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME | JOB      | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+-------+----------+------+------------+------+------+--------+-------+
+|  7499 | ALLEN | SALESMAN | 7698 | 1981-02-20 | 1600 |  300 |     30 |     3 |
++-------+-------+----------+------+------------+------+------+--------+-------+
+1 row in set
+
+ii) select * from empy where hiredate in (select min(hiredate) from empy where hiredate like '1981-__-__');
++-------+-------+----------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME | JOB      | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+-------+----------+------+------------+------+------+--------+-------+
+|  7499 | ALLEN | SALESMAN | 7698 | 1981-02-20 | 1600 |  300 |     30 |     3 |
++-------+-------+----------+------+------------+------+------+--------+-------+
+1 row in set
+
+68. select * from empy where job in (select job from empy where hiredate in (select min(hiredate) from empy where hiredate like '1981-__-__'));
++-------+--------+----------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME  | JOB      | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+--------+----------+------+------------+------+------+--------+-------+
+|  7499 | ALLEN  | SALESMAN | 7698 | 1981-02-20 | 1600 |  300 |     30 |     3 |
+|  7521 | WARD   | SALESMAN | 7698 | 1981-02-22 | 1250 |  500 |     30 |     4 |
+|  7654 | MARTIN | SALESMAN | 7698 | 1981-09-28 | 1250 | 1400 |     30 |     4 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 1500 | NULL |     30 |     3 |
++-------+--------+----------+------+------------+------+------+--------+-------+
+4 rows in set
+
+69.
+
+70. select sum(sal) from empy where job='Manager';
++----------+
+| sum(sal) |
++----------+
+|     8275 |
++----------+
+1 row in set
+
+71. select Job, Sum(sal*12) from empy where year(hiredate) = '1981' group by Job;
++-----------+-------------+
+| Job       | Sum(sal*12) |
++-----------+-------------+
+| SALESMAN  |       67200 |
+| MANAGER   |       99300 |
+| PRESIDENT |       60000 |
+| CLERK     |       11400 |
+| ANALYST   |       36000 |
++-----------+-------------+
+5 rows in set
+
+72. Select Sum(sal*12) from empy where grade =3;
++-------------+
+| Sum(sal*12) |
++-------------+
+|       52800 |
++-------------+
+1 row in set
+
+73. select Avg(sal) from empy where job='Clerk';
++-----------+
+| Avg(sal)  |
++-----------+
+| 1037.5000 |
++-----------+
+1 row in set
+
+74. select * from empy where deptno = 20 and  sal >(Select Avg(Sal) from empy where deptno = 10);
++-------+-------+---------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME | JOB     | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+-------+---------+------+------------+------+------+--------+-------+
+|  7566 | JONES | MANAGER | 7839 | 1981-04-02 | 2975 | NULL |     20 |     2 |
+|  7788 | SCOTT | ANALYST | 7566 | 1982-12-09 | 3000 | NULL |     20 |     1 |
+|  7902 | FORD  | ANALYST | 7566 | 1981-12-03 | 3000 | NULL |     20 |     1 |
++-------+-------+---------+------+------------+------+------+--------+-------+
+3 rows in set
+
+75. select Deptno ,Job ,count(*) as No_Emp from empy group by deptno,job order by deptno;
++--------+-----------+--------+
+| Deptno | Job       | No_Emp |
++--------+-----------+--------+
+|     10 | CLERK     |      1 |
+|     10 | MANAGER   |      1 |
+|     10 | PRESIDENT |      1 |
+|     20 | ANALYST   |      2 |
+|     20 | CLERK     |      2 |
+|     20 | MANAGER   |      1 |
+|     30 | CLERK     |      1 |
+|     30 | MANAGER   |      1 |
+|     30 | SALESMAN  |      4 |
++--------+-----------+--------+
+9 rows in set
+
+76. select w.mgr ,count(*) from empy w,empy m
+    -> where w.mgr = m.empno
+    -> group by w.mgr
+    -> order by w.mgr asc;
++------+----------+
+| mgr  | count(*) |
++------+----------+
+| 7566 |        2 |
+| 7698 |        5 |
+| 7782 |        1 |
+| 7788 |        1 |
+| 7839 |        3 |
+| 7902 |        1 |
++------+----------+
+6 rows in set
+
+77. select deptno ,count(*) from empy group by deptno
+    -> having count(*) >= 2;
++--------+----------+
+| deptno | count(*) |
++--------+----------+
+|     20 |        5 |
+|     30 |        6 |
+|     10 |        3 |
++--------+----------+
+3 rows in set
+
+78. select Job, count(Ename), max(Sal) from empy group by job having count(Ename) >=2;
++----------+--------------+----------+
+| Job      | count(Ename) | max(Sal) |
++----------+--------------+----------+
+| CLERK    |            4 |     1300 |
+| SALESMAN |            4 |     1600 |
+| MANAGER  |            3 |     2975 |
+| ANALYST  |            2 |     3000 |
++----------+--------------+----------+
+4 rows in set
+
+79. 
+80. select dname,count(ename),rank() over(order by dname desc) from empy
+    -> inner join dept
+    -> on empy.deptno=dept.deptno
+    -> group by dname
+    -> limit 1;
++-------+--------------+----------------------------------+
+| dname | count(ename) | rank() over(order by dname desc) |
++-------+--------------+----------------------------------+
+| SALES |            6 |                                1 |
++-------+--------------+----------------------------------+
+1 row in set
+
+
+81. Select * from empy where MGR = (Select EMPNO from empy where Ename like 'Jones');
++-------+-------+---------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME | JOB     | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+-------+---------+------+------------+------+------+--------+-------+
+|  7788 | SCOTT | ANALYST | 7566 | 1982-12-09 | 3000 | NULL |     20 |     1 |
+|  7902 | FORD  | ANALYST | 7566 | 1981-12-03 | 3000 | NULL |     20 |     1 |
++-------+-------+---------+------+------------+------+------+--------+-------+
+2 rows in set
+
+82. select * from  empy where sal >=2500;
++-------+-------+-----------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+-------+-----------+------+------------+------+------+--------+-------+
+|  7566 | JONES | MANAGER   | 7839 | 1981-04-02 | 2975 | NULL |     20 |     2 |
+|  7698 | BLAKE | MANAGER   | 7839 | 1981-05-01 | 2850 | NULL |     30 |     2 |
+|  7788 | SCOTT | ANALYST   | 7566 | 1982-12-09 | 3000 | NULL |     20 |     1 |
+|  7839 | KING  | PRESIDENT | NULL | 1981-11-17 | 5000 | NULL |     10 |     1 |
+|  7902 | FORD  | ANALYST   | 7566 | 1981-12-03 | 3000 | NULL |     20 |     1 |
++-------+-------+-----------+------+------------+------+------+--------+-------+
+5 rows in set
+
+83. select Empy.Ename, Dept.dname from empy
+    -> inner join
+    -> dept
+    -> on
+    -> empy.deptno = dept.deptno order by Dname;
++--------+------------+
+| Ename  | dname      |
++--------+------------+
+| CLARK  | ACCOUNTING |
+| KING   | ACCOUNTING |
+| MILLER | ACCOUNTING |
+| SMITH  | RESEARCH   |
+| JONES  | RESEARCH   |
+| SCOTT  | RESEARCH   |
+| ADAMS  | RESEARCH   |
+| FORD   | RESEARCH   |
+| ALLEN  | SALES      |
+| WARD   | SALES      |
+| MARTIN | SALES      |
+| BLAKE  | SALES      |
+| TURNER | SALES      |
+| JAMES  | SALES      |
++--------+------------+
+14 rows in set
+
+84. Select Empy.Ename, Dept.Dname from Empy
+    -> inner join
+    -> Dept
+    -> on
+    -> Empy.deptno = Dept.deptno
+    -> where Dname !='Sales'
+    -> order by Dname;
++--------+------------+
+| Ename  | Dname      |
++--------+------------+
+| CLARK  | ACCOUNTING |
+| KING   | ACCOUNTING |
+| MILLER | ACCOUNTING |
+| SMITH  | RESEARCH   |
+| JONES  | RESEARCH   |
+| SCOTT  | RESEARCH   |
+| ADAMS  | RESEARCH   |
+| FORD   | RESEARCH   |
++--------+------------+
+8 rows in set
+
+85. Select Empy.Ename, Empy.Sal, Empy.Comm, Dept.Dname from empy
+    -> inner join
+    -> Dept
+    -> on
+    -> Empy.Deptno = Dept.Deptno
+    -> where (Sal between 2000 and 5000) and (Loc = 'Chicago');
++-------+------+------+-------+
+| Ename | Sal  | Comm | Dname |
++-------+------+------+-------+
+| BLAKE | 2850 | NULL | SALES |
++-------+------+------+-------+
+1 row in set
+
+86. select * from empy w, empy m where w.mgr = m.empno and w.sal > m.sal;
++-------+-------+---------+------+------------+------+------+--------+-------+-------+-------+---------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME | JOB     | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE | EMPNO | ENAME | JOB     | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+-------+---------+------+------------+------+------+--------+-------+-------+-------+---------+------+------------+------+------+--------+-------+
+|  7902 | FORD  | ANALYST | 7566 | 1981-12-03 | 3000 | NULL |     20 |     1 |  7566 | JONES | MANAGER | 7839 | 1981-04-02 | 2975 | NULL |     20 |     2 |
+|  7788 | SCOTT | ANALYST | 7566 | 1982-12-09 | 3000 | NULL |     20 |     1 |  7566 | JONES | MANAGER | 7839 | 1981-04-02 | 2975 | NULL |     20 |     2 |
++-------+-------+---------+------+------------+------+------+--------+-------+-------+-------+---------+------+------------+------+------+--------+-------+
+2 rows in set
+
+87. Select Ename, Deptno, Grade from empy where deptno =10 or deptno = 30 and grade!=4 and hiredate < '1981-12-31' order by grade;
++--------+--------+-------+
+| Ename  | Deptno | Grade |
++--------+--------+-------+
+| KING   |     10 |     1 |
+| BLAKE  |     30 |     2 |
+| CLARK  |     10 |     2 |
+| ALLEN  |     30 |     3 |
+| TURNER |     30 |     3 |
+| MILLER |     10 |     3 |
+| JAMES  |     30 |     5 |
++--------+--------+-------+
+7 rows in set
+
+88. Select Empy.Ename, Empy.Job, Dept.Dname, Dept.Loc from empy Right join dept on Empy.deptno = Dept.Deptno where mgr in (select MGR from empy);
++--------+----------+------------+----------+
+| Ename  | Job      | Dname      | Loc      |
++--------+----------+------------+----------+
+| SMITH  | CLERK    | RESEARCH   | DALLAS   |
+| ALLEN  | SALESMAN | SALES      | CHICAGO  |
+| WARD   | SALESMAN | SALES      | CHICAGO  |
+| JONES  | MANAGER  | RESEARCH   | DALLAS   |
+| MARTIN | SALESMAN | SALES      | CHICAGO  |
+| BLAKE  | MANAGER  | SALES      | CHICAGO  |
+| CLARK  | MANAGER  | ACCOUNTING | NEW YORK |
+| SCOTT  | ANALYST  | RESEARCH   | DALLAS   |
+| TURNER | SALESMAN | SALES      | CHICAGO  |
+| ADAMS  | CLERK    | RESEARCH   | DALLAS   |
+| JAMES  | CLERK    | SALES      | CHICAGO  |
+| FORD   | ANALYST  | RESEARCH   | DALLAS   |
+| MILLER | CLERK    | ACCOUNTING | NEW YORK |
++--------+----------+------------+----------+
+13 rows in set
+
+89. Select * from empy where MGR in (Select empno from empy where Ename = 'Jones');
++-------+-------+---------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME | JOB     | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+-------+---------+------+------------+------+------+--------+-------+
+|  7788 | SCOTT | ANALYST | 7566 | 1982-12-09 | 3000 | NULL |     20 |     1 |
+|  7902 | FORD  | ANALYST | 7566 | 1981-12-03 | 3000 | NULL |     20 |     1 |
++-------+-------+---------+------+------------+------+------+--------+-------+
+2 rows in set
+
+90. select * from empy where grade =(select grade from empy where ename = 'Ford') and sal = (Select sal from empy where ename = 'Ford');
++-------+-------+---------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME | JOB     | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+-------+---------+------+------------+------+------+--------+-------+
+|  7788 | SCOTT | ANALYST | 7566 | 1982-12-09 | 3000 | NULL |     20 |     1 |
+|  7902 | FORD  | ANALYST | 7566 | 1981-12-03 | 3000 | NULL |     20 |     1 |
++-------+-------+---------+------+------------+------+------+--------+-------+
+2 rows in set
+
+91. Select Empy.Ename, Empy.Job, Dept.Dname, Empy.Sal, Empy.Grade, Empy.Deptno from empy inner join Dept on Empy.Deptno = Dept.Deptno order by deptno;
++--------+-----------+------------+------+-------+--------+
+| Ename  | Job       | Dname      | Sal  | Grade | Deptno |
++--------+-----------+------------+------+-------+--------+
+| CLARK  | MANAGER   | ACCOUNTING | 2450 |     2 |     10 |
+| KING   | PRESIDENT | ACCOUNTING | 5000 |     1 |     10 |
+| MILLER | CLERK     | ACCOUNTING | 1300 |     3 |     10 |
+| SMITH  | CLERK     | RESEARCH   |  800 |     5 |     20 |
+| JONES  | MANAGER   | RESEARCH   | 2975 |     2 |     20 |
+| SCOTT  | ANALYST   | RESEARCH   | 3000 |     1 |     20 |
+| ADAMS  | CLERK     | RESEARCH   | 1100 |     4 |     20 |
+| FORD   | ANALYST   | RESEARCH   | 3000 |     1 |     20 |
+| ALLEN  | SALESMAN  | SALES      | 1600 |     3 |     30 |
+| WARD   | SALESMAN  | SALES      | 1250 |     4 |     30 |
+| MARTIN | SALESMAN  | SALES      | 1250 |     4 |     30 |
+| BLAKE  | MANAGER   | SALES      | 2850 |     2 |     30 |
+| TURNER | SALESMAN  | SALES      | 1500 |     3 |     30 |
+| JAMES  | CLERK     | SALES      |  950 |     5 |     30 |
++--------+-----------+------------+------+-------+--------+
+14 rows in set
+
+92. Select Empy.Ename, Empy.Job, Dept.Dname, Empy.Sal, Empy.Grade, Empy.Deptno from empy inner join Dept on Empy.Deptno = Dept.Deptno where job !='Clerk' order by sal;
++--------+-----------+------------+------+-------+--------+
+| Ename  | Job       | Dname      | Sal  | Grade | Deptno |
++--------+-----------+------------+------+-------+--------+
+| WARD   | SALESMAN  | SALES      | 1250 |     4 |     30 |
+| MARTIN | SALESMAN  | SALES      | 1250 |     4 |     30 |
+| TURNER | SALESMAN  | SALES      | 1500 |     3 |     30 |
+| ALLEN  | SALESMAN  | SALES      | 1600 |     3 |     30 |
+| CLARK  | MANAGER   | ACCOUNTING | 2450 |     2 |     10 |
+| BLAKE  | MANAGER   | SALES      | 2850 |     2 |     30 |
+| JONES  | MANAGER   | RESEARCH   | 2975 |     2 |     20 |
+| SCOTT  | ANALYST   | RESEARCH   | 3000 |     1 |     20 |
+| FORD   | ANALYST   | RESEARCH   | 3000 |     1 |     20 |
+| KING   | PRESIDENT | ACCOUNTING | 5000 |     1 |     10 |
++--------+-----------+------------+------+-------+--------+
+10 rows in set
+
+93. select Ename, Job from empy where  MGR is null;
++-------+-----------+
+| Ename | Job       |
++-------+-----------+
+| KING  | PRESIDENT |
++-------+-----------+
+1 row in set
+
+94. Select * from empy right join  dept on  empy.deptno = dept.deptno order by sal;
++-------+--------+-----------+------+------------+------+------+--------+-------+--------+------------+----------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE | DEPTNO | DNAME      | LOC      |
++-------+--------+-----------+------+------------+------+------+--------+-------+--------+------------+----------+
+|  NULL | NULL   | NULL      | NULL | NULL       | NULL | NULL |   NULL |  NULL |     40 | OPERATIONS | BOSTON   |
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800 | NULL |     20 |     5 |     20 | RESEARCH   | DALLAS   |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950 | NULL |     30 |     5 |     30 | SALES      | CHICAGO  |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100 | NULL |     20 |     4 |     20 | RESEARCH   | DALLAS   |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250 | 1400 |     30 |     4 |     30 | SALES      | CHICAGO  |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250 |  500 |     30 |     4 |     30 | SALES      | CHICAGO  |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300 | NULL |     10 |     3 |     10 | ACCOUNTING | NEW YORK |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500 | NULL |     30 |     3 |     30 | SALES      | CHICAGO  |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600 |  300 |     30 |     3 |     30 | SALES      | CHICAGO  |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450 | NULL |     10 |     2 |     10 | ACCOUNTING | NEW YORK |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850 | NULL |     30 |     2 |     30 | SALES      | CHICAGO  |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975 | NULL |     20 |     2 |     20 | RESEARCH   | DALLAS   |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000 | NULL |     20 |     1 |     20 | RESEARCH   | DALLAS   |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000 | NULL |     20 |     1 |     20 | RESEARCH   | DALLAS   |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000 | NULL |     10 |     1 |     10 | ACCOUNTING | NEW YORK |
++-------+--------+-----------+------+------------+------+------+--------+-------+--------+------------+----------+
+15 rows in set
+
+95. select * from empy where sal = (Select (Max(sal) + Min(sal))/2 from empy);
+Empty set
+
+96. select dname,count(dname) from empy inner join dept on empy.deptno=dept.deptno group by dname having count(ename)>3;
++----------+--------------+
+| dname    | count(dname) |
++----------+--------------+
+| RESEARCH |            5 |
+| SALES    |            6 |
++----------+--------------+
+2 rows in set
+
+97. select dname,count(dname) from empy inner join dept on empy.deptno=dept.deptno group by dname having count(ename)>3;
++----------+--------------+
+| dname    | count(dname) |
++----------+--------------+
+| RESEARCH |            5 |
+| SALES    |            6 |
++----------+--------------+
+2 rows
+
+98.select * from empy where sal in(select avg(sal) as AVGSal from empy group by sal) and sal in(select max(sal) as MAXSal from empy group by sal) order by sal;
++-------+--------+-----------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+--------+-----------+------+------------+------+------+--------+-------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800 | NULL |     20 |     5 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950 | NULL |     30 |     5 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100 | NULL |     20 |     4 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250 |  500 |     30 |     4 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250 | 1400 |     30 |     4 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300 | NULL |     10 |     3 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500 | NULL |     30 |     3 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600 |  300 |     30 |     3 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450 | NULL |     10 |     2 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850 | NULL |     30 |     2 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975 | NULL |     20 |     2 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000 | NULL |     20 |     1 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000 | NULL |     20 |     1 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000 | NULL |     10 |     1 |
++-------+--------+-----------+------+------------+------+------+--------+-------+
+14 rows in set
+
+99. 
+
+100.
+
+101. Select Dept.Dname, Avg(sal) from empy inner join Dept on Empy.Deptno = Dept.Deptno group by Dname;
++------------+-----------+
+| Dname      | Avg(sal)  |
++------------+-----------+
+| RESEARCH   | 2175.0000 |
+| SALES      | 1566.6667 |
+| ACCOUNTING | 2916.6667 |
++------------+-----------+
+3 rows in set
+
+102. Select * from empy e where 5>(Select Count(*) from empy where e.sal >sal) order by sal;
++-------+--------+----------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME  | JOB      | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+--------+----------+------+------------+------+------+--------+-------+
+|  7369 | SMITH  | CLERK    | 7902 | 1980-12-17 |  800 | NULL |     20 |     5 |
+|  7900 | JAMES  | CLERK    | 7698 | 1981-12-03 |  950 | NULL |     30 |     5 |
+|  7876 | ADAMS  | CLERK    | 7788 | 1983-01-12 | 1100 | NULL |     20 |     4 |
+|  7521 | WARD   | SALESMAN | 7698 | 1981-02-22 | 1250 |  500 |     30 |     4 |
+|  7654 | MARTIN | SALESMAN | 7698 | 1981-09-28 | 1250 | 1400 |     30 |     4 |
++-------+--------+----------+------+------------+------+------+--------+-------+
+5 rows in set
+
+103. 
+
+104. select * from empy where empno in (Select MGR from empy) and MGR not in (Select Empno from empy where job = 'President');
++-------+-------+---------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME | JOB     | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+-------+---------+------+------------+------+------+--------+-------+
+|  7788 | SCOTT | ANALYST | 7566 | 1982-12-09 | 3000 | NULL |     20 |     1 |
+|  7902 | FORD  | ANALYST | 7566 | 1981-12-03 | 3000 | NULL |     20 |     1 |
++-------+-------+---------+------+------------+------+------+--------+-------+
+2 rows in set
+
+105. Select * from dept where deptno not in (Select deptno from empy);
++--------+------------+--------+
+| DEPTNO | DNAME      | LOC    |
++--------+------------+--------+
+|     40 | OPERATIONS | BOSTON |
++--------+------------+--------+
+1 row in set 
+
+106. 
+
+107.
+
+108. 
+
+109. Select * from empy where length(Sal) = 3;
++-------+-------+-------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME | JOB   | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+-------+-------+------+------------+------+------+--------+-------+
+|  7369 | SMITH | CLERK | 7902 | 1980-12-17 |  800 | NULL |     20 |     5 |
+|  7900 | JAMES | CLERK | 7698 | 1981-12-03 |  950 | NULL |     30 |     5 |
++-------+-------+-------+------+------------+------+------+--------+-------+
+2 rows in set
+
+110. Select * from empy where month(hiredate) = 12;
++-------+-------+---------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME | JOB     | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+-------+---------+------+------------+------+------+--------+-------+
+|  7369 | SMITH | CLERK   | 7902 | 1980-12-17 |  800 | NULL |     20 |     5 |
+|  7788 | SCOTT | ANALYST | 7566 | 1982-12-09 | 3000 | NULL |     20 |     1 |
+|  7900 | JAMES | CLERK   | 7698 | 1981-12-03 |  950 | NULL |     30 |     5 |
+|  7902 | FORD  | ANALYST | 7566 | 1981-12-03 | 3000 | NULL |     20 |     1 |
++-------+-------+---------+------+------------+------+------+--------+-------+
+4 rows in set
+
+Select * from empy where Hiredate like '____-12-__';
++-------+-------+---------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME | JOB     | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+-------+---------+------+------------+------+------+--------+-------+
+|  7369 | SMITH | CLERK   | 7902 | 1980-12-17 |  800 | NULL |     20 |     5 |
+|  7788 | SCOTT | ANALYST | 7566 | 1982-12-09 | 3000 | NULL |     20 |     1 |
+|  7900 | JAMES | CLERK   | 7698 | 1981-12-03 |  950 | NULL |     30 |     5 |
+|  7902 | FORD  | ANALYST | 7566 | 1981-12-03 | 3000 | NULL |     20 |     1 |
++-------+-------+---------+------+------------+------+------+--------+-------+
+4 rows in set
+
+111. Select * from empy where Ename like '%A%';
++-------+--------+----------+------+------------+------+------+--------+-------+
+| EMPNO | ENAME  | JOB      | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | GRADE |
++-------+--------+----------+------+------------+------+------+--------+-------+
+|  7499 | ALLEN  | SALESMAN | 7698 | 1981-02-20 | 1600 |  300 |     30 |     3 |
+|  7521 | WARD   | SALESMAN | 7698 | 1981-02-22 | 1250 |  500 |     30 |     4 |
+|  7654 | MARTIN | SALESMAN | 7698 | 1981-09-28 | 1250 | 1400 |     30 |     4 |
+|  7698 | BLAKE  | MANAGER  | 7839 | 1981-05-01 | 2850 | NULL |     30 |     2 |
+|  7782 | CLARK  | MANAGER  | 7839 | 1981-06-09 | 2450 | NULL |     10 |     2 |
+|  7876 | ADAMS  | CLERK    | 7788 | 1983-01-12 | 1100 | NULL |     20 |     4 |
+|  7900 | JAMES  | CLERK    | 7698 | 1981-12-03 |  950 | NULL |     30 |     5 |
++-------+--------+----------+------+------------+------+------+--------+-------+
+7 rows in set
+
+112. Select * from empy where sal in  (Select Deptno from empy);
+Empty set
+
+113.
+
+128. Select Ename, Job from empy where Sal in (Select Min(sal) from empy) or comm in (Select min(Comm) from empy);
++-------+----------+
+| Ename | Job      |
++-------+----------+
+| SMITH | CLERK    |
+| ALLEN | SALESMAN |
++-------+----------+
+2 rows in 
+
+
+
+
+
+select rankk, Group_concat(Name)as SNames from task group by rankk;
++-------+------------------------+
+| rankk | SNames                 |
++-------+------------------------+
+|     1 | Ravi,Madav,Ganesh,Rani |
+|     2 | Siva,Surya             |
+|     3 | Veerendra,Lavanya      |
++-------+------------------------+
+3 rows in set
+
+select * from (select *,dense_rank () over(order by sal desc) as sal_rank from empy) as t1 where t1.sal_rank = 3;

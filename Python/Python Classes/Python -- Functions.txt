@@ -1,0 +1,193 @@
+Python 3.11.4 (tags/v3.11.4:d2340ef, Jun  7 2023, 05:45:37) [MSC v.1934 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+a=1
+def myfunction():
+	b =2   # this is local variable
+	a=10
+	print('a = ',a)
+	print('b = ',b)
+
+	
+myfunction()
+a =  10
+b =  2
+a
+1
+b
+Traceback (most recent call last):
+  File "<pyshell#5>", line 1, in <module>
+    b
+NameError: name 'b' is not defined
+def fact(n):
+    factorial=1
+    i = 1
+    while ( i <= n):
+        factorial = factorial * i
+        i = i + 1
+
+        
+def fact(n):
+    factorial=1
+    i = 1
+    while ( i <= n):
+        factorial = factorial * i
+        i = i + 1
+    print(factorial)
+
+    
+fact(5)
+120
+
+
+def fact(n):
+	if n == 0:
+		res = 1
+	else: 
+		res = n * fact(n-1)
+	return res
+
+
+fact(5)
+120
+
+
+def fact(n):
+	if n == 0:
+		res = 1
+		print("Inside If",res,n)
+	else: 
+		res = n * fact(n-1)
+		print("inside else", res,n)
+	return res
+
+    
+fact(5)
+Inside If 1 0
+inside else 1 1
+inside else 2 2
+inside else 6 3
+inside else 24 4
+inside else 120 5
+120
+
+def square(x):
+	return x*x
+
+    
+square(5)
+25
+square(10)
+100
+
+
+f=lambda x: x * x
+f(5)
+25
+
+
+def sum(a,b):
+    return(a+b)
+
+sum(3,2)
+5
+
+f=lambda a,b: a + b
+f(3,2)
+5
+
+
+
+list=[1,2,3,4,5]
+
+square(5)
+25
+square([1,2,3,4,5])
+Traceback (most recent call last):
+  File "<pyshell#51>", line 1, in <module>
+    square([1,2,3,4,5])
+  File "<pyshell#29>", line 2, in square
+    return x*x
+TypeError: can't multiply sequence by non-int of type 'list'
+
+map(square,[1,2,3,4,5])
+<map object at 0x000001C4DDBE6170>
+k=list(map(square,[1,2,3,4,5]))
+Traceback (most recent call last):
+  File "<pyshell#54>", line 1, in <module>
+    k=list(map(square,[1,2,3,4,5]))
+TypeError: 'list' object is not callable
+
+
+f=map(square,[1,2,3,4,5])
+list(f)
+Traceback (most recent call last):
+  File "<pyshell#58>", line 1, in <module>
+    list(f)
+TypeError: 'list' object is not callable
+tuple(f)
+(1, 4, 9, 16, 25)
+del list
+
+
+f=map(square,[1,2,3,4,5])
+list(f)
+[1, 4, 9, 16, 25]
+
+
+f=map(lambda x:x*x,[1,2,3,4,5])
+f
+<map object at 0x000001C4DDBE6B90>
+list(f)
+[1, 4, 9, 16, 25]
+f=map(lambda x:x*x,(1,2,3,4,5))
+tuple(f)
+(1, 4, 9, 16, 25)
+
+
+def is_even(n):
+	if n%2 == 0:
+		return True
+	else: 
+		return false
+
+	    
+def is_even(n):
+	if n%2 == 0:
+		return True
+	else: 
+		return False
+
+	    
+
+is_even(100)
+True
+lst = [12,21,24,31,56]
+f=list(filter(is_even,lst))
+f
+[12, 24, 56]
+
+
+f=list(filter(lambda x:(x%2 == 0),lst))
+f
+[12, 24, 56]
+lst = [1,2,3,4,5]
+reduce(lambda x,y : x*y, lst)
+Traceback (most recent call last):
+  File "<pyshell#88>", line 1, in <module>
+    reduce(lambda x,y : x*y, lst)
+NameError: name 'reduce' is not defined
+
+
+from functools import reduce
+reduce(lambda x,y : x*y, lst)
+120
+
+sum = reduce(lambda a,b : a +b, range(1,51))
+
+sum
+1275
+min = lambda a, b, c : f"{a} is smaller" if(a < b & b < c) else f"{b} is smaller"  if (b < c) else f"{c} is smaller"
+min(10,20,30)
+'10 is smaller'
+
+

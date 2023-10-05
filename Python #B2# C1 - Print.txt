@@ -1,0 +1,61 @@
+Python 3.11.5 (tags/v3.11.5:cce6ba9, Aug 24 2023, 14:38:34) [MSC v.1936 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+print("hello world")
+hello world
+print('Python is OpenSource')
+Python is OpenSource
+print("Python is OpenSource")
+Python is OpenSource
+print('''Python is OpenSource''')
+Python is OpenSource
+	print("welcome to python")
+	
+SyntaxError: unexpected indent
+print("welcome to python")
+welcome to python
+print("Welcome to \"QualityThought\" ")
+Welcome to "QualityThought" 
+print("Welcome to \'QualityThought\' ")
+Welcome to 'QualityThought' 
+print("QualityThought"*5)
+QualityThoughtQualityThoughtQualityThoughtQualityThoughtQualityThought
+print("QualityThought\n"*5)
+QualityThought
+QualityThought
+QualityThought
+QualityThought
+QualityThought
+
+a = 2
+a
+2
+print(" %d is a value" %a)
+ 2 is a value
+print(" a is a value" )
+ a is a value
+print(a,"is a value" )
+2 is a value
+print("The %d  value"%a )
+The 2  value
+str1 = "phani"
+print("Welcome Mr."+str1)
+Welcome Mr.phani
+print("Welcome Mr.",str1)
+Welcome Mr. phani
+print("Welcome Mr.%s"%str1)
+Welcome Mr.phani
+a = 2.334
+print("value of a is %d" %a)
+value of a is 2
+print("value of a is %f" %a)
+value of a is 2.334000
+print("value of a is %s" %a)
+value of a is 2.334
+print("value of a is %2f" %a)
+value of a is 2.334000
+print("value of a is %.2f" %a)
+value of a is 2.33
+proudct_name = "Mobile"
+product_code = 101
+print("proudct name is ",proudct_name,"product_code is",product_code)
+proudct name is  Mobile product_code is 101

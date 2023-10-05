@@ -1,0 +1,151 @@
+Python 3.11.4 (tags/v3.11.4:d2340ef, Jun  7 2023, 05:45:37) [MSC v.1934 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+print("hello")
+hello
+import os
+os.getcwd()
+'C:\\Users\\Home\\AppData\\Local\\Programs\\Python\\Python311'
+a=10
+b=20
+c=a+,b
+SyntaxError: invalid syntax
+print(type(None))
+<class 'NoneType'>
+def calc():
+    a=10
+    b=20
+    c=a+b
+
+    
+x=calc()
+x
+print(x)
+None
+type(x)
+<class 'NoneType'>
+def calc():
+    a=10
+    b=20
+    c=a+b
+    return k
+
+x=calc()
+Traceback (most recent call last):
+  File "<pyshell#19>", line 1, in <module>
+    x=calc()
+  File "<pyshell#18>", line 5, in calc
+    return k
+NameError: name 'k' is not defined
+def calc():
+    a=10
+    b=20
+    c=a+b
+    return c
+
+x=calc()
+x
+30
+a = 20
+type(a)
+<class 'int'>
+a=22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
+a
+22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
+type(a)
+<class 'int'>
+a = -23422222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
+KeyboardInterrupt
+a=-234
+type(a)
+<class 'int'>
+a = 223.345
+type(a)
+<class 'float'>
+a = 22e5
+type(a)
+<class 'float'>
+a
+2200000.0
+x = 23
+type(x)
+<class 'int'>
+b = float(x)
+b
+23.0
+a=22.543
+b=int(a)
+b
+22
+a = 1+2j
+type(a)
+<class 'complex'>
+b = 2+3j
+c = a+b
+c
+(3+5j)
+type(c)
+<class 'complex'>
+#hello
+x="""hello"""
+type(x)
+<class 'str'>
+word = "welcome"
+print(word)
+welcome
+for = 'Quality Thought!'
+SyntaxError: invalid syntax
+name = 'Quality Thought!'
+print(name)
+Quality Thought!
+print (name[0])
+Q
+name[3]
+'l'
+name[7]
+' '
+name[-1]
+'!'
+name="HELLO"
+name[1]
+'E'
+name[-3]
+'L'
+name[-6]
+Traceback (most recent call last):
+  File "<pyshell#66>", line 1, in <module>
+    name[-6]
+IndexError: string index out of range
+name[7]
+Traceback (most recent call last):
+  File "<pyshell#67>", line 1, in <module>
+    name[7]
+IndexError: string index out of range
+name="HELLOWORLD"
+name[2:5]
+'LLO'
+name[2:8]
+'LLOWOR'
+print (name[2:])
+LLOWORLD
+print (name * 2)
+HELLOWORLDHELLOWORLD
+print (name + "INSTITUTE")
+HELLOWORLDINSTITUTE
+ch = 'A'
+type(ch)
+<class 'str'>
+name = "ravi"
+type(name)
+<class 'str'>
+name = "ravi123450"
+type(name)
+<class 'str'>
+type(name[4])
+<class 'str'>
+type(int(name[4]))
+<class 'int'>
+name[4]
+'1'
+type('1')
+<class 'str'>
+

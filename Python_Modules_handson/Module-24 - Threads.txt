@@ -1,0 +1,449 @@
+Threads:
+--------
+
+A thread represents a separate path of execution of a group of statements.
+In a python program if we write a group of statements, then these statements are executed
+by PVM one by one. This execution is called thread, because PVM uses a thread to execute 
+these statements.
+
+1. Program to find the currently running thread in python.
+
+import threading
+
+print("Program to find current thread")
+
+print("Currently running thread:",threading.current_thread().getName())
+
+if threading.current_thread() == threading.main_thread():
+	print("The current thread is main thread")
+else:
+	print("The current thread is not main thread")
+	
+
+A thread represents execution of statements. The way the statements are executed is of 
+two types.
+1. Single Tasking
+2. Multi Tasking
+
+Single Tasking : 
+================
+
+A task means doing some calculation, processing etc. A generally, a task involves
+execution of a group of statements. In 'single tasking' environment only one task is 
+given to the processor at a time. eg: printer
+
+Multi Tasking : 
+=============
+
+Multi tasking means give several jobs to the processor at a time.If there are multiple tasks
+processor will allocate time for each one in circular manner. For first task it may allocate 
+few milliseconds next second one like it will allocate in circular manner.This is called 
+round robin. In short, executing tasks in a circular manner in such that coming back to the 
+first task after completing the last task is called as round robin method.
+
+
+The main advantage of multitasking is to use the processor time in a better way. We are 
+engaging most of the processor time and it is not sitting idle. In this way, we can complete
+several tasks at a time, and thus achieve good performance.
+
+Multi tasking of two types. 
+a) Process based multitasking 
+b) Thread based multitasking 
+
+So far we discussed about process based multitasking. Now let's discuss about thread based 
+multitasking.
+
+In process based multitasking, several program are executed at a time by the micro processor.
+In thread based multitasking, several parts of the same program is executed at a time
+by the microprocessor.
+
+program  --> task1, task2 
+each task level thread will create and will executed by processor. 
+
+Each thread can be imagined as an individual process that can execute a separate set of 
+statements. We can imagine these threads as hands of the microprocessor. We have 2 hands,
+so we can do 2 things at a time. Similarly, if a processor has 2 threads, it can do 2 tasks 
+at a time. This is called thread based multitasking.
+
+Difference between a process and thread: 
+---------------------------------------
+
+A process represents a group of statements which are executed by the PVM 
+using a main thread.we can take running program as an example for a process. 
+Each process will have its own memory, a program counter that keeps track of 
+instruction being executed and a stack that holds the data.
+The data of one process is generally isolated from another process. It means the data 
+or results of process is generally not available to another process unless both 
+processes communicate explicitly.
+
+A thread also represents a group of statements within a program. When we want to use 
+threads, we have to create them separately which are in turn run by the main thread.
+Threads will not have their own memory and program counter. The data of on thread is 
+easily shared by another thread. So it is possible that a thread can easily modify the 
+data of another thread.
+
+Any program utilizes resources like memory and processor time. Hence it is called heavy
+weight process. But a thread is a small part of the program that takes very less memory and 
+processor time. Hence threads are called light weight process.
+
+Concurrent programming and GIL:
+--------------------------------
+
+In python it is possible to create multiple processes and set them to work simultaneously.
+In the same way, it is possible to create multiple threads and set them to execute 
+different parts of the program simultaneously. Executing the tasks or parts of the 
+program simultaneously is called 'concurrent programming'
+
+When more than one thread is running at a time, the data of one thread is available to 
+another thread. In such cases, there is possibility that the data may undergo unwanted
+changes. This happens especially when more that one thread is acting on data simultaneously.
+This will lead to wrong results. It means the PVM is not thread safe. Hence PVM uses an 
+internal global interpreter lock(GIL) that allow only a single thread to execute at 
+any given moment. 
+
+Uses of Threads : 
+-----------------
+
+Threads are highly useful when we want to perform more than one task simultaneously.
+this is also known as 'concurrent programming'. This makes the threads to be used in the 
+following situations.
+
+* Threads are mainly used in server side programs to serve the needs of multiple clients 
+on a network or Internet. On Internet a server machine has to cater to the needs of 
+thousands of clients a time, thus can handle several clients.
+
+* Threads are also used to create games and animations.  Animation means moving objects 
+from one place to other place. In many games , generally we have to perform more than one 
+task simultaneously. There, threads will be of invaluable help. For example in a game,
+a flight may be moving from left to right. A machine gun should shoot it, releasing the 
+bullets at the flight. There two tasks should happen simultaneously. for this purpose
+we can use 2 threads, one thread will move the flight and other one will move the bullet,
+simultaneously towards the flight.
+
+Creating threads in python 
+-------------------------
+Python provide 'Thread' class of threading module that is useful to create threads.
+To create your own thread, we ares supposed to create an object Thread class. The 
+following are the different ways of creating our own threads in python.
+
+i) Creating a thread without using a class 
+ii) Creating thread by creating sub class to thread class 
+iii) Creating thread without creating sub class to thread class.
+
+Creating a thread with out using class : 
+--------------------------------------
+
+The purpose of a thread is to execute a group of statements like a function. So, we can 
+create thread by creating an object of thread class and pass function name as target for 
+thread as : 
+
+t = Thread(target = functionname,[args=(arg1,arg2,...)])
+
+t --> Thread class object 
+target --> function on which thread will act 
+args --- > tuple of arguments which passed to function.
+
+Once thread is created like this, it should be start by calling start() method as : 
+
+t.start()
+
+Then the thread 't' will jump into the target function and execute the code inside that 
+function. 
+
+1. WAP create thread without using class.
+
+from threading import * 
+
+def display():
+	print("This is my first thread programming")
+	
+for i in range(5):
+	t = Thread(target=display)
+	t.start()
+
+# By passing as argument 
+
+from threading import * 
+
+def display(str):
+	print(str)
+	
+for i in range(5):
+	t = Thread(target=display,args=("This is my first thread programming",))
+	t.start()
+
+Creating Thread by creating a subclass to Thread class 
+----------------------------------------------------------
+Since the 'Thread' class is already created by the python people in threading module,
+we can make our class as a sub class to Thread class so that we can inherit the 
+functionality of Thread class. This can be done by writing the following statement.
+
+1. WAP to creating thread by creating a subclass to thread class 
+
+from threading import Thread
+
+class MyThread(Thread):
+
+	# override the run() method of thread class
+	def run(self):
+		for i in range(1,6):
+			print(i)
+t1 = MyThread()
+t1.start()
+t1.join()
+
+
+Creating a Thread without creating sub class to Thread class: 
+-----------------------------------------------------------
+
+from threading import *
+
+class MyThread:
+	def __init__(self,str):
+		self.str = str 
+	def display(self,x,y):
+		print(self.str)
+		print('The args are:',x,y)
+		
+	
+obj = MyThread('Hello')
+
+t1 = Thread(target = obj.display,args =(1,2))
+
+t1.start()
+
+Thread class Methods:
+------------------------
+
+Below are the list of methods and properties available in Thread class 
+
+Method or Property		Description
+==================		============
+t.start()			Starts the thread. It must be called at most once per thread object.
+					It arranges for the object's run() method to be invoked in a separate
+					thread of control
+					
+t.join([timeout])	wait untill the thread terminates or a timeout occurs. 
+					'timeout' is a floating point number specifying a timout for 
+					the operation in seconds(or fraction of seconds)
+					
+t.is_alive()		Returns True. If the thread is alive in memory and False otherwise.
+					A thread is alive from the moment the start() method returns untill
+					its run() method terminates
+					
+t.setName(name)		Gives a name to the thread
+
+t.getName()			Return the name of the thread
+
+t.name				This is a property that represent the thread name
+
+
+Single Tasking Using a Thread:
+-----------------------------
+
+A thread can be employed to execute one task at a time. suppose there are 3 tasks and 
+these are executed  by a thread one by one then it is called single tasking.
+
+let's plan a program to prepare tea
+1. Boil milk and tea powder for 5 minutes. ---> Task1
+2. Add sugar and boil for minutes --> Task2
+3. Filter it and serve --> Task3
+
+
+from threading import * 
+from time import *
+
+class MyThread:
+
+	def prepareTea(self):
+		self.task1()
+		self.task2()
+		self.task3()
+	
+	def task1(self):
+		print('Boil milk and tea powder for 5 minutes..')
+		sleep(2)
+		print('Done')
+	
+	def task2(self):
+		print('Add sugar and boil for 3 minutes...')
+		sleep(2)
+		print('Done')
+		
+	def task3(self):
+		print('Filter it and serve...')
+		sleep(2)
+		print('Done')
+		
+obj = MyThread()
+
+t = Thread(target=obj.prepareTea)
+t.start()
+
+Multitasking using Multiple Threads:
+------------------------------------
+
+In multi tasking several tasks are executed at a time. For this purpose, we need 
+more than one thread. For example, to perform 2 tasks, we can take 2 threads and attach
+them to the 2 tasks. Then those tasks are simultaneously executed by the two threads.
+Using more than one thread is called 'multi threading' and multi threading is used 
+in multitasking.
+
+from threading import *
+from time import *
+
+class service:
+
+	def __init__(self,str):
+		self.str = str 
+	
+	def parcelservice(self):
+		for i in range(1,5):
+			print(self.str," : ",i)
+			sleep(0.1)
+
+obj1 = service("prepare food")
+obj2 = service("parcel food")
+
+t1 = Thread(target = obj1.parcelservice)
+t2 = Thread(target = obj2.parcelservice)
+
+t1.start()
+t2.start()
+
+output : 
+prepare food  :  1
+parcel food  :  1
+parcel food  :  2
+prepare food  :  2
+parcel food  :  3
+prepare food  :  3
+prepare food  :  4
+parcel food  :  4
+
+Railway reservation : 
+===================
+
+with single user : 
+-----------------
+from time import *
+
+class Railway:
+
+
+	def __init__(self,available):
+		self.available = available
+	def reserve(self,wanted):
+		print("available no.of berths =",self.available)
+		if(self.available >= wanted):
+			name = 'phani'
+			print("%d berths alloted for %s"%(wanted,name))
+			self.available -= wanted
+		else:
+				print('sorry , no berths to allott')
+
+obj = Railway(1)
+obj.reserve(1)
+
+Multi user : 
+-----------------
+
+from threading import *
+from time import *
+
+class Railway:
+
+	def __init__(self,available):
+		self.available = available
+
+	def reserve(self,wanted):
+		print("available no.of berths =",self.available)
+		if(self.available >= wanted):
+
+				name = current_thread().getName()
+				print("%d berths alloted for %s"%(wanted,name))
+				sleep(1.5)
+				self.available -= wanted
+		else:
+				print('sorry , no berths to allott')
+
+obj = Railway(1)
+t1 = Thread (target=obj.reserve,args=(1,))
+t2 = Thread (target=obj.reserve,args=(1,))
+
+t1.setName('First Person')
+t2.setName('Second Person')
+
+t1.start()
+t2.start()
+
+								  
+some times we can not rely on this program. Here 2 threads are simultaneously acting 
+on same method. This problem can be solved by allowing only one thread to access at 
+any given moment of time. Support thread 't1' enters the method first, then any other 
+thread should not be allowed to act on the same thread till 't1' completes execution adn 
+come out. this is called thread synchronization or thread safe.
+
+
+
+Thread synchronization can be done 2 ways.
+1. Using locks
+2. Using semaphores
+
+Locks : 
+========
+
+
+from threading import *
+from time import *
+
+class Railway:
+
+	def __init__(self,available):
+		self.available = available
+		self.l = Lock()
+
+	def reserve(self,wanted):
+		self.l.acquire()
+		print("available no.of berths =",self.available)
+		if(self.available >= wanted):
+
+				name = current_thread().getName()
+				print("%d berths alloted for %s"%(wanted,name))
+				sleep(1.5)
+				self.available -= wanted
+		else:
+				print('sorry , no berths to allott')
+		self.l.release()
+
+obj = Railway(1)
+t1 = Thread (target=obj.reserve,args=(1,))
+t2 = Thread (target=obj.reserve,args=(1,))
+
+t1.setName('First Person')
+t2.setName('Second Person')
+
+t1.start()
+t2.start()
+
+
+output : 
+------------
+C:\Users\lenovo\Desktop>python thread_railway.py
+available no.of berths = 1
+1 berths alloted for Second Person
+available no.of berths = 0
+sorry , no berths to allott
+								   
+
+
+Semaphore :
+-------
+A semaphore is an object that provides synchronization based on counter. A 
+semaphore is created as an object of semaphore class as 
+
+l = Sempahore(countervalue) #Here counter value is bydefault 1
+
+when acquire method called counter value is decremented by 1 
+and when release method called counter value will be incremented by 1
+in previous example use Semaphore method instead of lock()

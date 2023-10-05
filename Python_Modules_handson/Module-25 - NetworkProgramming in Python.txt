@@ -1,0 +1,264 @@
+Networking in Python : 
+-------------------------
+Inter connection of computers is called 'network'. A simple network can be formed by
+connecting two computers by cable. Thus a network can have two computers or 2000 computers. 
+For example Internet is the largest network on the earth where millions of computers are 
+connected. 
+The main advantage of network is sharing the resources. The data and files available in a 
+computer can be shared with other computers in the network. 
+	In a network, some computers receive data or services from other computers. The 
+computer that receive services are called 'client' machines. Other computers which provide
+services in the network are called 'server' machines. 
+
+There are 3 requirements to establish a connection.
+
+Hardware : Includes the computers, cables,modems, routers, hubs etc. 
+Software : Includes programs to communicate between servers and clients 
+Protocol : Represents a way to establish connection and helps in sending and 
+			receiving data in standard format. 
+
+Protocol : 
+===========
+	A protocol represents a set of rules to be followed by every computer on the network.
+protocol is useful to physically move data from one place to other place on a network. 
+While sending data or receiving data, the computers in the network should follow some rules.
+For example, if a computer wants to send file on a network, it is not possible to send the 
+entire file in a single step. The file should be broken into small files and then only
+they can be send to other computer. The following are two types of protocol models based 
+on which other protocols are developed.
+
+1. TCP/IP protocol 
+2. UDP
+
+TCP/IP Protocol: (Transmission Control Protocol/Internet protocol)
+==================
+	TCP/IP model has got the five layers. 
+	
+Application --------> TCP ------------->IP---------> DataLinkLayer -------> PhysicalLayer
+layer
+
+ApplicationLayer : Directly interact with an application.format the data and send it to TCP 
+TCP 	: Divide the data into small segments called 'packets'. packet contains 
+		   groups of bytes of data. These packets then send to IP.
+IP 		:  IP layer inserts the packet into envelopes called frames. Each frame contains a packet 
+			the IP address of a destination computer, the IP address of source computer, and some 
+			additional bits useful in error detection and correction. These frames are then sent to Data link layer.
+Datalink : layer which dispatch them into correct destination computer on the network
+PhysicalLayer : Physical layer is used to physically transmit data on the network using
+				the appropriate hardware. 
+				
+An IP address is a unique identification number given to every computer on the network.
+It contains four integer numbers in the range of 0 to 255 and separated by dots as.
+	192.168.12.3
+
+IP address can be name nothing but site name.
+www.google.com ----- 216.58.194.197 This mapping service is available in Internet called 
+Domain naming system(DNS)
+
+On Internet , IP addresses of 4 bytes are used and this version is called IP address version 4. 
+The next new version of IP address is version 6, which uses 16 bytes to identify the computer.
+
+TCP/IP takes care of number of bits send and whether all bits are received duly by the 
+destination computer. So it is called 'connection oriented reliable protocol'. Every 
+transmitted bit is accountable in this protocol. Hence, this protocol is highly suitable 
+for transporting data reliably on a network. Almost all the protocols on Internet uses 
+TCP/IP model internally. 
+
+HTTP (Hyper Text transfer protocol) is the most widely used protocol on Internet, which 
+is used to transfer webpages(.html files) from one computer to another computer on Internet. 
+
+FTP(File Transfer protocol) is useful to download or upload files from and to the server.
+
+SMTP(Simple mail transfer protocol) is useful to send mails on network. 
+
+POP(Post Office Protocol) is useful to receive mails into the mail boxes.
+
+NNTP(Network News Transfer Protocol) is used to transfer news articles on internet. 
+
+User Datagram Protocol (UDP): 
+------------------------
+	UDP is another protocol transfer data in connection less and unreliable manner.
+It will not check how many bits are sent or received in both sides. Hence UDP is 
+generally not used to send text. UDP is used to send images,audio files and video files.
+Even some bits are lost, still the image or audio file can be composed with a slight 
+variation that will not disturb original image. 
+
+Sockets: 
+==========
+It is possible to establish a logical connecting point between a server and client so that 
+communication can be done through that point. This point is called 'socket'. Each socket 
+is given an identification number which is called 'port number'. port number takes 
+2 bytes and can be from 0 to 65,535. Establishing communication between server and a 
+client using socket is called 'socket programming'.
+
+Some ports are already dedicated to the system.eg : 0 t0 1023
+
+To create a socket , python provides a socket module. The socket() function of socket 
+module is useful to create a socket object as 
+
+	s = socket.socket(addres_family,type)
+
+Here address_family -> version of IP address version 4 or version 6
+						socket.AF_INET  #internet protocol IPV4
+						socket.AF_INET6 # internet protocol IPV6
+	  Type ---> type of protocol whether TCP/IP or UDP.
+				socket.SOCK_STREAM # for TCP 
+				socket.SOCK_DGRM   # for UDP
+				
+				
+1. Python program to know IP address of computer 
+
+import socket 
+
+host = 'www.google.co.in'
+address = socket.gethostbyname(host)
+print("IP address is",address)
+
+URL (Uniform Resource locator) 
+=============================
+
+URL represents the address that is specified to access some information or resource on 
+internet. Look at the example URL : 
+
+https://www.youtube.com:200/
+
+https ---> protocol
+www.youtube.com --. IP address or server name. 
+Third part is port number which is optional.
+
+https://docs.datastax.com/en/landing_page/doc/landing_page/current.html
+
+last part is file that is referred. 
+
+Reading source code of a webpage : 
+===============================
+
+import urllib.request
+file = urllib.request.urlopen("https://www.python.org/")
+print(file.read())
+
+Download a  source code 
+---------------------------------
+import urllib.request
+file = urllib.request.urlopen("https://www.python.org/")
+content = file.read()
+
+f = open('webpagedemo.html','wb')
+f.write(content)
+f.close()
+
+Download image from internet : 
+-----------------------------
+import urllib.request 
+url = "https://dziganto.github.io/assets/images/python_logo.jpeg?raw=true"
+python_image = urllib.request.urlretrieve(url,"python_download1.jpeg")
+
+
+A TCP/IP server : 
+------------------
+
+A server is a program that provides services to other computers on the network or Internet.
+Similary a client is a program that receives services from the servers. When a server wants 
+to communicate with a client, there is need of a socket. A socket is a point  of 
+connection between the server and client.
+The following are the general steps to be used at server side. 
+
+1. Write a python program to create TCP/IP client program that 
+send messages from server
+
+import socket 
+
+# take server name and port number
+host = 'localhost'
+port = 5000
+
+# create a socket at serverside using TCP/IP protocol 
+
+s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+
+# bind the socket with server and port number 
+
+s.bind((host,port))
+
+#allow max no.of connections to the socket 
+
+s.listen(1)
+
+# wait till a client accepts connection 
+
+c, addr = s.accept()
+
+#display client address 
+
+print("connection from ", str(addr))
+
+# send messages to the client after encoding into a binary string 
+
+c.send(b"Hello client,how are you ")
+
+msg = "Bye!"
+
+c.send(msg.encode())
+
+# disconnect the server 
+
+c.close()
+
+2. Write a python program to create TCP/IP client program that 
+receives messages from server
+
+import socket 
+
+host = 'localhost'
+port = 5000 
+
+s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+
+#connect it to server and port number 
+s.connect((host,port))
+
+# receive message string from server at a time 1024 bytes 
+msg = s.recv(1024)
+
+while msg):
+	print('Received:'+msg.decode())
+	msg = s.recv(1024)
+
+s.close()
+
+
+3. Python program to send mail to any mail address 
+
+import smtplib 
+from email.mime.text import MIMEText
+
+body = ''' Thanks for attending python sessions ''' 
+
+#create MIMEText class object with body Text 
+
+msg = MIMEText(body)
+
+# from which address the mail has to send 
+from_addr = "qtpython01@gmail.com"
+
+# to with address the mail has sent 
+
+to_addr = "qtbigdata01@gmail.com"
+
+
+msg ['From'] = from_addr
+msg['To'] = to_addr
+msg['Subject'] = "PYTHON SESSIONS"
+
+# connect to gmail.com server using 587 port number 
+
+server = smtplib.SMTP('smtp.gmail.com',587)
+
+server.starttls()
+
+server.login(fromaddr,'myaddress')
+server.send_message(msg)
+
+print("mail sent")
+
+server.quit()
